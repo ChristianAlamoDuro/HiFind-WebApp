@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-side-nav-bar',
-  templateUrl: './side-nav-bar.component.html',
-  styleUrls: ['./side-nav-bar.component.css']
+  selector: 'app-side-navbar',
+  templateUrl: './side-navbar.component.html',
+  styleUrls: ['./side-navbar.component.css']
 })
 export class SideNavBarComponent implements OnInit {
 
