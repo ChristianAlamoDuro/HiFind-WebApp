@@ -7,7 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BannerComponent } from './components/banner/banner.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'banner', component: BannerComponent },
   { path: '**', component: HomeComponent }
