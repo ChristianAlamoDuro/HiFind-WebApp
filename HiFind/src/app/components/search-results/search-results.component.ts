@@ -1,12 +1,13 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PublicMovieApiService } from '../../services/public-movie-api.service';
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css'],
+  providers: [PublicMovieApiService]
 })
-export class SearchResultsComponent implements OnInit, DoCheck {
+export class SearchResultsComponent implements OnInit {
   public searchTitle: string;
   public movieResult: Array<any>;
   public result: boolean;
@@ -18,29 +19,13 @@ export class SearchResultsComponent implements OnInit, DoCheck {
     this.activatedRoute.params.subscribe(
       results => {
         this.searchTitle = results.title;
+        this.searchMovies(this.searchTitle);
       }
     );
+  }
+  ngOnInit() {
   }
 
-  ngOnInit() {
-    this.searchMovies(this.searchTitle);
-  }
-  ngDoCheck() {
-    let aux: string;
-    this.activatedRoute.params.subscribe(
-      params => {
-        aux = params['titulo'];
-      }
-    );
-    if (aux !== this.searchTitle) {
-      this.activatedRoute.params.subscribe(
-        params => {
-          this.searchTitle = params['titulo'];
-        }
-      );
-      this.searchMovies(this.searchTitle);
-    }
-  }
 
   searchMovies(title: string) {
     this.result = false;
