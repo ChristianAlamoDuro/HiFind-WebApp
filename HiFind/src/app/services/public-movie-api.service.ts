@@ -13,7 +13,7 @@ export class PublicMovieApiService {
     this.url = 'https://www.omdbapi.com/?apikey=410641ea';
   }
   // Funcion que realiza una peticion para obtener la informacion de la api sobre todas las ocurrencias buscadas devuelve json
-  getAllMovie(movieName: string): Observable<any> {
+  getMoviesSearch(movieName: string): Observable<any> {
     return this.http.get(this.url + '&s=' + movieName);
   }
   // Función que realiza una peticion para obtener la información sobre una película devuelve json

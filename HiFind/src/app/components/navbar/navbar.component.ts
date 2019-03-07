@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicMovieApiService } from '../../services/public-movie-api.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -12,6 +13,7 @@ export class NavbarComponent implements OnInit {
   // creamos la variable requestService de tipo publicMovieApiService
   constructor(
     public requestService: PublicMovieApiService,
+    public router: Router
   ) {
 
   }
@@ -19,12 +21,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
   // Realizamos una peticion a la api para obterner la información de la busqueda introducida en la barra de busqueda
-  loadMovie() {
-    this.requestService.getAllMovie(this.movieName).subscribe(
-      result => {
-        this.movieName = result;
-        this.movieName = '';
-      }
-    );
+  searchMovie() {
+    this.router.navigate(['/searchResults/' + this.movieName]);
+    this.movieName = '';
   }
 }

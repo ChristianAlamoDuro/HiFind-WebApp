@@ -5,9 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 // importar componentes
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
+  { path: 'searchResults/:title', component: SearchResultsComponent },
   { path: '**', component: NotFoundComponent }
 ];
 export const AppRoutingProviders: any[] = [];

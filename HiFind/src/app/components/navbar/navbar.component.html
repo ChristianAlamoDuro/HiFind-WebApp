@@ -19,8 +19,8 @@
     </ul>
     <div class="form-inline mr-auto form-desaparece-movil">
       <input class="form-control mr-2 rounded-pill" id="busqueda" type="search" placeholder="Buscar" aria-label="Search"
-        (keyup.enter)="loadMovie()" [(ngModel)]="movieName">
-      <button (click)="loadMovie()" class="bg-busqueda btn btn-outline-success my-2 my-sm-0 rounded-pill" type="button"><i
+        (keyup.enter)="searchMovie()" [(ngModel)]="movieName">
+      <button (click)="searchMovie()" class="bg-busqueda btn btn-outline-success my-2 my-sm-0 rounded-pill" type="button"><i
           class="fa fa-search"></i></button>
     </div>
     <ul class="navbar-nav ml-auto color-logeo">
