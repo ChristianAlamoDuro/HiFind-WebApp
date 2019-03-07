@@ -10,6 +10,8 @@ import { BannerComponent } from './components/banner/banner.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+import { routing, AppRoutingProviders } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
