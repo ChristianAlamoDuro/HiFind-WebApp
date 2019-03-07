@@ -29,13 +29,13 @@ export class SearchResultsComponent implements OnInit, DoCheck {
     let aux: string;
     this.activatedRoute.params.subscribe(
       params => {
-        aux = params['titulo'];
+        aux = params.titulo;
       }
     );
     if (aux !== this.searchTitle) {
       this.activatedRoute.params.subscribe(
         params => {
-          this.searchTitle = params['titulo'];
+          this.searchTitle = params.titulo;
         }
       );
       this.searchMovies(this.searchTitle);
