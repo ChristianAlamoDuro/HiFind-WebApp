@@ -1,10 +1,21 @@
-import { NgModule } from '@angular/core';
+//importar modulos del router de angular
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+//importar componentes
+import { HomeComponent } from './components/home/home.component';
+import { BannerComponent } from './components/banner/banner.component';
 
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'banner', component: BannerComponent },
+  { path: '**', component: HomeComponent }
+];
+export const AppRoutingProviders: any[] = [];
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
