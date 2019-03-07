@@ -1,0 +1,52 @@
+#icono {
+	width: 50px;
+}
+
+.bg-menu {
+	background: linear-gradient(135deg, rgba(101, 52, 247, 1) 0%, rgba(218, 24, 240, 1) 100%);
+}
+
+.navbar-menu a {
+	color: #d09ced;
+}
+
+.navbar-menu a:hover {
+	color: #ffffff;
+}
+
+ul li.active a {
+	color: #ffffff;
+}
+
+.color-logeo a {
+	color: #4d1ba0;
+}
+
+.bg-busqueda:hover {
+	background-color: #e2fdbd;
+	color: #000000;
+	border: solid 2px #c9fc85;
+}
+
+.bg-busqueda {
+	color: #ffffff;
+	border: solid 2px #ffffff;
+}
+
+.form-desaparece-movil {
+	display: none;
+}
+
+.form-aparece-movil {
+	display: block;
+}
+
+@media (min-width: 991px) {
+	.form-desaparece-movil {
+		display: block;
+	}
+
+	.form-aparece-movil {
+		display: none;
+	}
+}
