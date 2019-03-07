@@ -4,14 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 //importar componentes
 import { HomeComponent } from './components/home/home.component';
-import { BannerComponent } from './components/banner/banner.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
-  { path: 'banner', component: BannerComponent },
   { path: '**', component: NotFoundComponent }
 ];
 export const AppRoutingProviders: any[] = [];

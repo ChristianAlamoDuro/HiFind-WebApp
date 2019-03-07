@@ -5,14 +5,26 @@
 		Estilo comic para las peliculas
 	*/
 
+/************* Letras de la web *************/
+/*
+		Estilo comic para las peliculas
+	*/
+@font-face {
+  src: url("./assets/fonts/Caveat-Regular.ttf");
+  font-family: comic;
+}
 
+@font-face {
+  src: url("./assets/fonts/RobotoMono-Light.ttf");
+  font-family: letra-footer;
+}
 /************* Fin letras web *************/
 
 /************* Configuraciones generales para atribitos de bootstrap  *************/
 .container-fluid {
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 /*
@@ -20,15 +32,15 @@
 	*/
 .btn.focus,
 .btn:focus {
-	outline: 0;
-	box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0);
 }
 
 /*
 		Todos los elementos card tengan el mismo ancho
 	*/
 .card {
-	height: 100%;
+  height: 100%;
 }
 
 /************* FIN Configuraciones generales para atribitos de bootstrap  *************/
@@ -38,68 +50,68 @@
 
 /************* MENU DE NAVEGACION *************/
 #icono {
-	width: 50px;
+  width: 50px;
 }
 
 .bg-menu {
-	background: linear-gradient(135deg, rgba(101, 52, 247, 1) 0%, rgba(218, 24, 240, 1) 100%);
+  background: linear-gradient(135deg, rgba(101, 52, 247, 1) 0%, rgba(218, 24, 240, 1) 100%);
 }
 
 .navbar-menu a {
-	color: #d09ced;
+  color: #d09ced;
 }
 
 .navbar-menu a:hover {
-	color: #ffffff;
+  color: #ffffff;
 }
 
 ul li.active a {
-	color: #ffffff;
+  color: #ffffff;
 }
 
 .color-logeo a {
-	color: #4d1ba0;
+  color: #4d1ba0;
 }
 
 .bg-busqueda:hover {
-	background-color: #e2fdbd;
-	color: #000000;
-	border: solid 2px #c9fc85;
+  background-color: #e2fdbd;
+  color: #000000;
+  border: solid 2px #c9fc85;
 }
 
 .bg-busqueda {
-	color: #ffffff;
-	border: solid 2px #ffffff;
+  color: #ffffff;
+  border: solid 2px #ffffff;
 }
 
 .form-desaparece-movil {
-	display: none;
+  display: none;
 }
 
 .form-aparece-movil {
-	display: block;
+  display: block;
 }
 
 @media (min-width: 991px) {
-	.form-desaparece-movil {
-		display: block;
-	}
+  .form-desaparece-movil {
+    display: block;
+  }
 
-	.form-aparece-movil {
-		display: none;
-	}
+  .form-aparece-movil {
+    display: none;
+  }
 }
 
 /*Menu desplegable de la barra de navegacion principal*/
 li.active div a.dropdown-item,
 li.nav-item div.dropdown-menu a.dropdown-item {
-	color: black;
+  color: black;
 }
 
 li.active div a.dropdown-item:hover,
 li.nav-item div.dropdown-menu a.dropdown-item:hover {
-	background: linear-gradient(135deg, rgba(101, 52, 247, 1) 0%, rgba(218, 24, 240, 1) 100%);
-	color: #ffffff;
+  background: linear-gradient(135deg, rgba(101, 52, 247, 1) 0%, rgba(218, 24, 240, 1) 100%);
+  color: #ffffff;
 
 }
 
@@ -113,87 +125,87 @@ li.nav-item div.dropdown-menu a.dropdown-item:hover {
 */
 footer,
 footer a {
-	font-family: letra-footer;
+  font-family: letra-footer;
 }
 
 hr {
-	background-color: rgba(101, 52, 247, 1);
+  background-color: rgba(101, 52, 247, 1);
 }
 
 /************* FIN CUERPO WEB *************/
 
 /************* FOOTER *************/
 .bg-footer {
-	background-color: #2d3246;
-	color: rgba(255, 255, 255, 0.8);
+  background-color: #2d3246;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 footer h6 {
-	color: #ffffff;
+  color: #ffffff;
 }
 
 /*
 	Ajuste para todos los hr que se encuentren dentro del footer
 */
 footer hr {
-	width: 50%;
-	margin: 0;
+  width: 50%;
+  margin: 0;
 }
 
 footer a:hover,
 span.enlace:hover {
-	color: #ffffff;
-	text-decoration: none;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 footer a,
 span.enlace {
-	color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /*
 	Cuando el usuario pase el ratón por el span.enalce le saldrá una mano para que vea que puede hacer click
 */
 span.enlace {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 /************** INICIO MEDIA QUERYS *************/
 /*Media querys para distintos tamaños para que el titulo quede encuadrado siempre*/
 @media (min-width:765px) {
-	.tit-ani {
-		bottom: 0%;
-		font-size: 3vh;
-	}
+  .tit-ani {
+    bottom: 0%;
+    font-size: 3vh;
+  }
 
-	.neon {
-		bottom: -15%;
-		font-size: 6vw;
-	}
+  .neon {
+    bottom: -15%;
+    font-size: 6vw;
+  }
 }
 
 @media (min-width:1200px) {
-	.tit-ani {
-		bottom: 15%;
-		font-size: 4vh;
-	}
+  .tit-ani {
+    bottom: 15%;
+    font-size: 4vh;
+  }
 
-	.neon {
-		bottom: -10%;
-	}
+  .neon {
+    bottom: -10%;
+  }
 }
 
 @media (min-width:1400px) {
-	.neon {
-		bottom: -20%;
-	}
+  .neon {
+    bottom: -20%;
+  }
 }
 
 @media (min-width:1660px) {
-	.neon {
-		font-size: 4vw;
-		bottom: -20%;
-	}
+  .neon {
+    font-size: 4vw;
+    bottom: -20%;
+  }
 }
 
 /************** FIN MEDIA QUERYS *************/
