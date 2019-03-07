@@ -1,8 +1,8 @@
-//importar modulos del router de angular
+// importar modulos del router de angular
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//importar componentes
+// importar componentes
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 const appRoutes: Routes = [

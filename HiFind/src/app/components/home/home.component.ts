@@ -15,11 +15,10 @@ export class HomeComponent implements OnInit {
   constructor(
     public requestService: PublicMovieApiService,
   ) {
-    this.movieName = ['batman', 'superman', 'thor', 'the mask'];
+    this.movieName = ['fight club', 'superman', 'thor', 'the mask'];
   }
   // Al vargar la pagina se hara la peticion a la api y rellenará la variable topMovies con el json
   ngOnInit() {
     this.topMovies = this.requestService.getMovieArray(this.movieName);
-    console.log(this.topMovies);
   }
 }

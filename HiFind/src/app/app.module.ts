@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { routing, AppRoutingProviders } from './app-routing.module';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { routing, AppRoutingProviders } from './app-routing.module';
     BannerComponent,
     FooterComponent,
     NavbarComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
