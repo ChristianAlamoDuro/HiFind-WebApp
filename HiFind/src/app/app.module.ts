@@ -13,6 +13,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { routing, AppRoutingProviders } from './app-routing.module';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     FooterComponent,
     NavbarComponent,
     NotFoundComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
