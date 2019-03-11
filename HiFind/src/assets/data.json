@@ -18,7 +18,7 @@
   ],
   "Categories": {
     "Movies": ["Top Movies", "Terror", "Science fiction", "Comedy","Action","Superhero"],
-    "VideoGames": ["Top Games","RPG","Terror", "Science Fiction", "Comedy","Shooter"]
+    "VideoGames": ["Top Games","RPG","Terror", "Science Fiction", "Comedy","Shooter","Strategy"]
   },
   "Company":{
       "YearCreation": 2018,
