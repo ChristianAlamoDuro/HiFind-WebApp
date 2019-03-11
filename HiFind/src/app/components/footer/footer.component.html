@@ -4,27 +4,27 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-4">
-            <h6>Autores</h6>
+            <h6>Authors</h6>
             <hr>
             <p class="mt-3" *ngFor="let creators of dataAplication?.Creators">
               {{creators}} <br>
             </p>
           </div>
           <div class="col-12 col-md-4">
-            <h6>Contacto</h6>
+            <h6>Contact</h6>
             <hr>
             <p class="mt-3" *ngFor="let social of dataAplication?.SocialNetwork">
               <a href="{{social.url}}"><i class="{{social.icon}}"></i> {{social.name}}</a> <br>
             </p>
           </div>
           <div class="col-12 col-md-4">
-            <h6>Otros datos</h6>
+            <h6>Other data</h6>
             <hr>
             <p class="mt-3">
-              <i class="fafa-handshake"></i> <a href="" class="enlace">Licencia
-                de uso</a> <br>
-              <i class="fa fa-map"></i> <a href="Mapa.html" class="enlace"> Mapa web</a> <br>
-              <i class="fa fa-location-arrow"></i> Dirección: Ctra. Colmenar Viejo, Km. 12,800
+              <i class="fafa-handshake"></i> <a href="" class="enlace">
+                License</a> <br>
+              <i class="fa fa-map"></i> <a href="Mapa.html" class="enlace">Web map</a> <br>
+              <i class="fa fa-location-arrow"></i> Direction: Ctra. Colmenar Viejo, Km. 12,800
               Madrid
             </p>
           </div>
