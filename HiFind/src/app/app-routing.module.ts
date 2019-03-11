@@ -9,11 +9,15 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MoreInfoComponent } from './components/more-info/more-info.component';
+import { MoviesComponent } from './components/movies/movies.component';
+
+// Rutas
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'searchResults/:title', component: SearchResultsComponent },
   { path: 'more-info/:title', component: MoreInfoComponent },
+  { path: 'movies', component: MoviesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', component: NotFoundComponent }
