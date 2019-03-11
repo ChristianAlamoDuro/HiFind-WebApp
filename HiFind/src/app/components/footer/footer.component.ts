@@ -20,7 +20,6 @@ export class FooterComponent implements OnInit {
     this.dataService.getData().subscribe(
       result => {
         this.dataAplication = result;
-        console.log(this.dataAplication);
       }
     );
   }

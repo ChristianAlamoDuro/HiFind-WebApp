@@ -15,6 +15,7 @@ import { routing, AppRoutingProviders } from './app-routing.module';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { MoreInfoComponent } from './components/more-info/more-info.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RegisterComponent } from './components/register/register.component';
     NotFoundComponent,
     SearchResultsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MoreInfoComponent
   ],
   imports: [
     BrowserModule,

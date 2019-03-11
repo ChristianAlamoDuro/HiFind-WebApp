@@ -8,6 +8,8 @@ import { PublicMovieApiService } from '../../services/public-movie-api.service';
   providers: [PublicMovieApiService]
 })
 export class SearchResultsComponent implements OnInit {
+  //
+  public movieTitle: string;
   // Creamos la variable searchTitle con lo que vamos a buscar en la barra de busqueda
   public searchTitle: string;
   // Creamos la variable movieResults sera un array de tipo any donde se guardará la respuesta de la api en formato json
@@ -19,7 +21,8 @@ export class SearchResultsComponent implements OnInit {
     // Creamos la variable activatedRoute de tipo activatedRouter para poder obtener el parametro de la url
     public activatedRoute: ActivatedRoute,
     // Creamos la variable publicapimovie de tipo publicmoviesapiserive para poder acceder a los metodos de la clase apimovieserice
-    public publicApiMovies: PublicMovieApiService
+    public publicApiMovies: PublicMovieApiService,
+    public router: Router
   ) {
     this.activatedRoute.params.subscribe(
       results => {
@@ -48,5 +51,10 @@ export class SearchResultsComponent implements OnInit {
         }
       }
     );
+  }
+
+  moreInfo(movieTitle) {
+    this.movieTitle = movieTitle;
+    this.router.navigate(['/more-info/' + this.movieTitle]);
   }
 }
