@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <h1 class="text-center">
-            Regístrate!
+            Sign up!
           </h1>
           <form #formRegister >
             <!-- Email -->
@@ -14,16 +14,16 @@
             </div>
             <!-- Username -->
             <div class="form-group">
-              <label for="email">Nombre de usuario:</label>
+              <label for="email">Username:</label>
               <input type="text" name="username" id="username" class="form-control" required [(ngModel)]="username">
             </div>
             <!-- Password -->
             <div class="form-group">
-              <label for="email">Contraseña:</label>
+              <label for="email">Password:</label>
               <input type="password" name="password" id="password" class="form-control" required [(ngModel)]="password">
             </div>
             <input type="submit" value="Enter" id="enter" name="enter" class="btn btn-block btn-lg btn-primary"> <br>
-            ¿Ya tienes una cuenta? <a [routerLink]="[ '/login']">Accede a tu cuenta!</a>
+            Do you already have an account? <a [routerLink]="[ '/login']">Sign up</a>
           </form>
         </div>
       </div>

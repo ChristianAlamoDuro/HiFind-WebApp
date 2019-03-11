@@ -4,26 +4,21 @@
       <div class="card">
         <div class="card-body">
           <h1 class="text-center">
-            Accede a tu cuenta
+            Sign in
           </h1>
-          <form #formLogin >
+          <form #formLogin>
             <!-- Email -->
             <div class="form-group">
               <label for="email">Email:</label>
-              <input type="email" name="email" id="email" class="form-control"
-              required
-              [(ngModel)]="email"
-              >
+              <input type="email" name="email" id="email" class="form-control" required [(ngModel)]="email">
             </div>
             <!-- Password -->
             <div class="form-group">
-              <label for="email">Contraseña:</label>
-              <input type="password" name="password" id="password" class="form-control"
-              required
-              [(ngModel)]="password">
+              <label for="email">Password:</label>
+              <input type="password" name="password" id="password" class="form-control" required [(ngModel)]="password">
             </div>
             <input type="submit" value="Enter" id="enter" name="enter" class="btn btn-block btn-lg btn-primary"> <br>
-            ¿Aun no tienes cuenta? <a [routerLink]="['/register']">Registrate!</a>
+            You do not have an account yet? <a [routerLink]="['/register']">Sign in!</a>
           </form>
         </div>
       </div>
