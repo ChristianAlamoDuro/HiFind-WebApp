@@ -1,0 +1,27 @@
+{
+  "Creators": ["Christian Álamo Duro", "Daniel Álvarez Pérez", "Borja Gamarra del Álamo"],
+  "SocialNetwork": [{
+      "name": "Twitter",
+      "url": "#",
+      "icon": "fa fa-twitter"
+    },
+    {
+      "name": "Instagram",
+      "url": "#",
+      "icon": "fa fa-instagram"
+    },
+    {
+      "name": "Facebook",
+      "url": "#",
+      "icon": "fa fa-facebook"
+    }
+  ],
+  "Categories": {
+    "Movies": ["Top Movies", "Terror", "Science fiction", "Comedy","Action","Superhero"],
+    "VideoGames": ["Top Games","RPG","Terror", "Science Fiction", "Comedy","Shooter"]
+  },
+  "Company":{
+      "YearCreation": 2018,
+      "Name": "HiFind"
+  }
+}

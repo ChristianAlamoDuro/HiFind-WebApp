@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataAplicationService } from '../../services/data-aplication.service';
 
 @Component({
   selector: 'app-side-navbar',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavBarComponent implements OnInit {
 
-  constructor() { }
-
+  public dataAplication;
+  constructor(
+    public dataService: DataAplicationService
+  ) { }
   ngOnInit() {
+    this.dataService.getData().subscribe(
+      result => {
+        this.dataAplication = result;
+      }
+    );
   }
 }
