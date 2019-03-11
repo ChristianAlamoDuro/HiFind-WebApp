@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(
     public requestService: PublicMovieApiService,
   ) {
-    this.movieName = ['bambi', 'superman returns', 'thor', 'the mask'];
+    this.movieName = ['Mr. Nobody', 'Green mile', 'Pulp fiction', 'the godfather'];
   }
   // Al cargar la pagina se hara la peticion a la api y rellenará la variable topMovies con el json
   ngOnInit() {
