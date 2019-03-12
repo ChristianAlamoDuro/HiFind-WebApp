@@ -52,7 +52,8 @@ export class SearchResultsComponent implements OnInit {
       }
     );
   }
-
+  // Funcion a la que se le pasa por parametros el titulo de la pelicula que en este momento se a
+  // seleccionado y redirecciona a la ruta more-info pasandole por url ese titulo de pelicula
   moreInfo(movieTitle) {
     this.movieTitle = movieTitle;
     this.router.navigate(['/more-info/' + this.movieTitle]);
