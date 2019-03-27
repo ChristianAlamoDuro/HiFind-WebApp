@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-menu bg-menu col-12 shadow d-flex sticky-top">
   <a class="navbar-brand" [routerLink]="[ '/home']"><img src="../../../assets/img/manoZombie.png" id="icono"></a>
   <div class="form-inline form-aparece-movil col-5">
-    <input class="form-control  rounded-pill" type="search" placeholder="Seach" aria-label="Search" (keyup.enter)=buscarPelicula()
-      [(ngModel)]="peliculaBuscar">
+    <input class="form-control  rounded-pill" type="search" placeholder="Seach" aria-label="Search" (keyup.enter)=searchMovie()
+      [(ngModel)]="movieName">
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
