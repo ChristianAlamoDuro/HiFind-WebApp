@@ -13,6 +13,7 @@ export class WebMapComponent implements OnInit {
     this.dataService.getData().subscribe(
       result => {
         this.dataAplication = result;
+        
         console.log(this.dataAplication);
       }
     );
