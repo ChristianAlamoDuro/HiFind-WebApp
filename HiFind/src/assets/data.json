@@ -23,5 +23,38 @@
   "Company": {
     "YearCreation": 2018,
     "Name": "HiFind"
-  }
+  },
+  "webmap": [{
+    "Inicio": {
+      "home": {
+        "title": "Home",
+        "route": "/home",
+        "icon": "fa fa-home"
+      }
+    },
+    "Sections": {
+      "movies": {
+        "title": "Movies",
+        "route": "/movies",
+        "icon": "fa fa-film"
+      },
+      "videogames": {
+        "title": "Video Games",
+        "route": "/videogames",
+        "icon": "fa fa-gamepad"
+      }
+    },
+    "Users": {
+      "Login": {
+        "title": "Login",
+        "route": "/login",
+        "icon": "fas fa-sign-in-alt"
+      },
+      "Register": {
+        "title": "Register",
+        "route": "/register",
+        "icon": "fas fa-unlock-alt"
+      }
+    }
+  }]
 }

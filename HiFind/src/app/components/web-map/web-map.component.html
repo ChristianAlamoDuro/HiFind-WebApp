@@ -1,0 +1,23 @@
+<main class="container container-peliculas">
+  <h2 class="text-center display-4 mt-5">Mapa Web</h2>
+  <hr>
+  <!--Mapa Web -->
+
+  <!--Row-->
+
+  <div class="row justify-content-center mb-5" *ngIf="dataAplication">
+    <div class="col-12 mt-2 col-lg-6 col-xl-4" *ngFor="let iterator of dataAplication.webmap">
+      <h3 class="tittle_header">{{iterator}}</h3>
+      <div class="jumbotron h-100" *ngFor="let item of iterator">
+        <hr class="my-4">{{item.title}}<br>
+        <i class="fa fa-home p-2" aria-hidden="true"></i>
+        <a class="lead tittle_map" href="index.html">Home</a><br><br>
+      </div>
+    </div>
+  </div>
+
+  <!--FIN de Row-->
+
+  <!--FIN de Mapa Web-->
+
+</main>

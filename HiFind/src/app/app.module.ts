@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MoreInfoComponent } from './components/more-info/more-info.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import { WebMapComponent } from './components/web-map/web-map.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MoviesComponent } from './components/movies/movies.component';
     LoginComponent,
     RegisterComponent,
     MoreInfoComponent,
-    MoviesComponent
+    MoviesComponent,
+    WebMapComponent
   ],
   imports: [
     BrowserModule,

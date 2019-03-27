@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MoreInfoComponent } from './components/more-info/more-info.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import { WebMapComponent } from './components/web-map/web-map.component';
 
 // Rutas
 const appRoutes: Routes = [
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'searchResults/:title', component: SearchResultsComponent },
   { path: 'more-info/:title', component: MoreInfoComponent },
   { path: 'movies', component: MoviesComponent },
+  { path: 'web-map', component: WebMapComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', component: NotFoundComponent }
