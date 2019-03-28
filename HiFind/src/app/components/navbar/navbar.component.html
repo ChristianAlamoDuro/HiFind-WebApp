@@ -11,10 +11,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto ml-sm-1">
       <li class="nav-item mr-1" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="[ '/home']">Home</a>
+        <a class="nav-link" [routerLink]="[ '/home']">{{dataAplication.Navbar.home}}</a>
       </li>
       <li class="nav-item  mr-1" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="[ '/movies']">Movies</a>
+        <a class="nav-link" [routerLink]="[ '/movies']">{{dataAplication.Navbar.movies}}</a>
       </li>
     </ul>
     <div class="form-inline mr-auto form-desaparece-movil">
@@ -25,9 +25,9 @@
     </div>
     <ul class="navbar-nav ml-auto color-logeo">
       <li class="nav-item mr-1">
-        <a class="nav-link" [routerLink]="['/login']"><i class="fa fa-user"></i> Login</a> </li>
+        <a class="nav-link" [routerLink]="['/login']"><i class="fa fa-user"></i> {{dataAplication.Navbar.login}}</a> </li>
       <li class="nav-item mr-1">
-        <a class="nav-link" [routerLink]="['/register']"><i class="fa fa-unlock-alt"></i> Register</a>
+        <a class="nav-link" [routerLink]="['/register']"><i class="fa fa-unlock-alt"></i> {{dataAplication.Navbar.register}}</a>
       </li>
     </ul>
   </div>

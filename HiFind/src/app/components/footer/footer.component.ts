@@ -14,13 +14,14 @@ export class FooterComponent implements OnInit {
     public dataService: DataAplicationService
   ) {
     this.currentYear = new Date().getFullYear();
-  }
-
-  ngOnInit() {
     this.dataService.getData().subscribe(
       result => {
         this.dataAplication = result;
       }
     );
+  }
+
+  ngOnInit() {
+
   }
 }

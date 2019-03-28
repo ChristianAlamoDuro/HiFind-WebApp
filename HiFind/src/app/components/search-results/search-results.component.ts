@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PublicMovieApiService } from '../../services/public-movie-api.service';
+import { DataAplicationService } from '../../services/data-aplication.service';
+
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
@@ -17,13 +19,20 @@ export class SearchResultsComponent implements OnInit {
   // Crearemos una variable result de tipo boolean de manera que cuando el servidor responda con contenido es decir se hayan
   // encontrado sugerencias a la busqueda se pondra a true
   public result: boolean;
+  public dataAplication;
   constructor(
     // Creamos la variable activatedRoute de tipo activatedRouter para poder obtener el parametro de la url
-    public activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     // Creamos la variable publicapimovie de tipo publicmoviesapiserive para poder acceder a los metodos de la clase apimovieserice
-    public publicApiMovies: PublicMovieApiService,
-    public router: Router
+    private publicApiMovies: PublicMovieApiService,
+    private router: Router,
+    private dataService: DataAplicationService
   ) {
+    this.dataService.getData().subscribe(
+      result => {
+        this.dataAplication = result;
+      }
+    );
     this.activatedRoute.params.subscribe(
       results => {
         this.searchTitle = results.title;

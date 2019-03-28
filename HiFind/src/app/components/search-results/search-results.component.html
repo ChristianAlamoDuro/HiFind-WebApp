@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="text-center display-5 mt-5 text-uppercase">You've been search: {{searchTitle}}</h2>
+  <h2 class="text-center display-5 mt-5 text-uppercase">{{dataAplication.Search.title}}: {{searchTitle}}</h2>
   <hr>
   <div class="row" *ngIf="result">
     <div class="col-12 col-md-4 col-lg-3 mb-3" *ngFor="let movie of movieResult">
@@ -10,13 +10,13 @@
         </div>
         <div class="ml-auto mr-auto mb-2">
           <button type="button" class="btn btn-primary align-item-end" (click)=moreInfo(movie.Title)>
-            Ver más
+              {{dataAplication.Buttons.seeMore}}
           </button>
         </div>
       </div>
     </div>
   </div>
   <div class="col-12 text-center" *ngIf="!result">
-    <h5>movie not found</h5>
+    <h5> {{dataAplication.Search.notFound}} </h5>
   </div>
 </div>

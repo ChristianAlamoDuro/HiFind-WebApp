@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PublicMovieApiService } from 'src/app/services/public-movie-api.service';
+import { DataAplicationService } from '../../services/data-aplication.service';
+
 
 @Component({
   selector: 'app-movies',
@@ -13,12 +15,19 @@ export class MoviesComponent implements OnInit {
   public moviesScienceFiction: Array<any> = [];
   public moviesComedy: Array<any> = [];
   public categoryData: object;
+  public dataAplication;
 
   // Inicializamos los array con las peliculas que queremos mostrar en la seccion por defecto.
   constructor(
-    public requestApi: PublicMovieApiService,
-    public router: Router
+    private requestApi: PublicMovieApiService,
+    private router: Router,
+    private dataService: DataAplicationService
   ) {
+    this.dataService.getData().subscribe(
+      result => {
+        this.dataAplication = result;
+      }
+    );
     this.moviesTerror = ['the nun', 'saw', 'The Conjuring'];
     this.moviesScienceFiction = ['Interstellar', 'Independence Day', 'Alita'];
     this.moviesComedy = ['american pie', 'champions', 'eurotrip'];

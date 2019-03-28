@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PublicMovieApiService } from '../../services/public-movie-api.service';
+import { DataAplicationService } from 'src/app/services/data-aplication.service';
 
 @Component({
   selector: 'app-more-info',
@@ -11,10 +12,12 @@ import { PublicMovieApiService } from '../../services/public-movie-api.service';
 export class MoreInfoComponent implements OnInit {
   public movieTitle: string;
   public movieInfo: any;
+  public dataAplication;
   constructor(
     // Inicializamos en el constructor una variable de tipo activatedRouted
     public activatedRoute: ActivatedRoute,
     public publicApiMovies: PublicMovieApiService,
+    private dataService: DataAplicationService
   ) {
     // Sacamos la variable que le hemos pasado por parametros
     this.activatedRoute.params.subscribe(
@@ -22,6 +25,11 @@ export class MoreInfoComponent implements OnInit {
         this.movieTitle = results.title;
         // llamamos al metodo searchMovie y le pasamos el resultado del parametro obtenido por la url
         this.moreInfo(this.movieTitle);
+      }
+    );
+    this.dataService.getData().subscribe(
+      result => {
+        this.dataAplication = result;
       }
     );
   }

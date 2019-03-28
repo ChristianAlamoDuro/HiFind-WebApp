@@ -21,40 +21,50 @@
     "VideoGames": ["Top Games", "RPG", "Terror", "Science Fiction", "Comedy", "Shooter", "Strategy"]
   },
   "Company": {
-    "YearCreation": 2018,
-    "Name": "HiFind"
+    "yearCreation": 2018,
+    "name": "HiFind"
   },
-  "webmap": [{
-    "Inicio": {
-      "home": {
-        "title": "Home",
-        "route": "/home",
-        "icon": "fa fa-home"
-      }
-    },
-    "Sections": {
-      "movies": {
-        "title": "Movies",
-        "route": "/movies",
-        "icon": "fa fa-film"
-      },
-      "videogames": {
-        "title": "Video Games",
-        "route": "/videogames",
-        "icon": "fa fa-gamepad"
-      }
-    },
-    "Users": {
-      "Login": {
-        "title": "Login",
-        "route": "/login",
-        "icon": "fas fa-sign-in-alt"
-      },
-      "Register": {
-        "title": "Register",
-        "route": "/register",
-        "icon": "fas fa-unlock-alt"
-      }
-    }
-  }]
+  "Login":{
+    "title":"Sign in",
+    "message":"You do not have an account yet?"
+  },
+  "Register":{
+    "title":"Sign up",
+    "message":"Do you already have an account? "
+  },
+  "Generic":{
+    "title":"Title",
+    "email":"Email",
+    "username":"Username",
+    "password":"Password",
+    "releaseDate":"Release date",
+    "publicDirected":"Public directed",
+    "duration":"Duration",
+    "producer":"Producer",
+    "director":"Director",
+    "actors":"Actors",
+    "synopsis":"Synopsis",
+    "awards":"Awards",
+    "punctuation":"Punctuation",
+    "punctuationAdmin":"Punctuation",
+    "terror":"Terror",
+    "ScienceFiction":"Science fiction",
+    "comedy":"Comedy",
+    "movies":"Movies",
+    "categories":"Categories",
+    "videogames":"VideoGames"
+  },
+  "Buttons":{
+    "seeMore":"See more"
+  },
+  "Navbar":{
+    "home":"home",
+    "movies":"Movies",
+    "login":"Login",
+    "register":"Register"
+  },
+  "Search":{
+    "title":"You've been search",
+    "notFound":"movie not found"
+  }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataAplicationService } from '../../services/data-aplication.service';
+
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,16 @@ export class RegisterComponent implements OnInit {
   public email: string;
   public password: string;
   public username: string;
-  constructor() { }
+  public dataAplication;
+  constructor(
+    private dataService: DataAplicationService
+  ) {
+    this.dataService.getData().subscribe(
+      result => {
+        this.dataAplication = result;
+      }
+    );
+  }
 
   ngOnInit() {
   }
