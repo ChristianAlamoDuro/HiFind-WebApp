@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // importar componentes
 import { HomeComponent } from './components/home/home.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';

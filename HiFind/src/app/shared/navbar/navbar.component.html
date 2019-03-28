@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-menu bg-menu col-12 shadow d-flex sticky-top">
+<nav class="navbar navbar-expand-lg navbar-menu bg-menu col-12 shadow d-flex sticky-top" *ngIf="dataAplication">
   <a class="navbar-brand" [routerLink]="[ '/home']"><img src="../../../assets/img/manoZombie.png" id="icono"></a>
   <div class="form-inline form-aparece-movil col-5">
     <input class="form-control  rounded-pill" type="search" placeholder="Seach" aria-label="Search"

@@ -1,15 +1,16 @@
-<div class="container" *ngIf="movieInfo">
-  <div class="row">
-    <div *ngIf="loading" class="d-flex justify-content-center align-items-center">
+<div class="container">
+  <div class="row" *ngIf="loading">
+    <div  class="d-flex justify-content-center align-items-center">
       <div class="spinner-border text-primary mt-5" role="status">
         <span class="sr-only">Cargando ...</span>
       </div>
     </div>
-
-    <div *ngIf="movieInfo" class="col-12 col-md-4 mt-5">
+  </div>
+  <div class="row" *ngIf="!loading">
+    <div class="col-12 col-md-4 mt-5" *ngIf="movieInfo">
       <img src="{{movieInfo.Poster}}" class="img-fluid" alt="">
     </div>
-    <div class="col-12 col-md-8 mt-5">
+    <div class="col-12 col-md-8 mt-5" *ngIf="dataAplication && movieInfo">
       <p> <span class="font-weight-bold">{{dataAplication.Generic.title}}:</span> {{movieInfo.Title}} </p>
       <p> <span class="font-weight-bold">{{dataAplication.Generic.releaseDate}}:</span> {{movieInfo.Released}} </p>
       <p> <span class="font-weight-bold">{{dataAplication.Generic.publicDirected}}:</span> {{movieInfo.Rated}} </p>
