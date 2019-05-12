@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataAplicationService } from '../../services/data-aplication.service';
+import { User } from '../../models/user';
+import { UserClientService } from '../../services/userClient.service';
 
 
 @Component({
@@ -8,21 +10,33 @@ import { DataAplicationService } from '../../services/data-aplication.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  public email: string;
-  public password: string;
-  public username: string;
+  public user: User;
   public dataAplication;
+
   constructor(
-    private dataService: DataAplicationService
-  ) {
+    private dataService: DataAplicationService,
+    private userService: UserClientService
+  ) { }
+x
+  ngOnInit() {
     this.dataService.getData().subscribe(
       result => {
         this.dataAplication = result;
       }
     );
+
+    this.user = new User(1, '', '', '', '');
   }
 
-  ngOnInit() {
+  onSubmit(form) {
+    this.userService.register(this.user)
+      .subscribe(response => {
+        console.log(response);
+        form.reset();
+      },
+      error => {
+        console.log(error);
+      });
   }
 
 }
