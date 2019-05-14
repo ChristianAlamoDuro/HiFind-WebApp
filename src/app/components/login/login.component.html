@@ -6,7 +6,7 @@
           <h1 class="text-center">
             {{dataAplication.Login.title}}
           </h1>
-          <form #formLogin>
+          <form #formLogin="ngForm" (ngSubmit)="onSubmit(formLogin)" method="POST">
             <!-- Email -->
            <div class="form-group">
               <label for="email">{{dataAplication.Generic.email}}:</label>
