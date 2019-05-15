@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@services/*": ["src/app/core/services/*"],
-      "@models/*": ["src/app/shared/models*"]
+      "@models/*": ["src/app/shared/models/*"]
     }
   }
 }

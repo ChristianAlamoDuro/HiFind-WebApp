@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
-import { User } from '../../shared/models/user';
 import { UserClientService } from '@services/user-client/userClient.service';
 
 
