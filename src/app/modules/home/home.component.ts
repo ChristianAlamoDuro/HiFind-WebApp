@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PublicMovieApiService } from '../../services/public-movie-api.service';
-import { DataAplicationService } from '../../services/data-aplication.service';
+import { PublicMovieApiService } from '@services/public-movie-api/public-movie-api.service';
+import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 
 @Component({
   selector: 'app-home',

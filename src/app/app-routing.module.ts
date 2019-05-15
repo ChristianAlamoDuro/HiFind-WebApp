@@ -3,14 +3,14 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // importar componentes
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './modules/home/home.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { MoreInfoComponent } from './components/more-info/more-info.component';
-import { MoviesComponent } from './components/movies/movies.component';
-import { WebMapComponent } from './components/web-map/web-map.component';
+import { SearchResultsComponent } from './modules/search-results/search-results.component';
+import { LoginComponent } from './modules/login/login.component';
+import { RegisterComponent } from './modules/register/register.component';
+import { MoreInfoComponent } from './modules/more-info/more-info.component';
+import { MoviesComponent } from './modules/movies/movies.component';
+import { WebMapComponent } from './modules/web-map/web-map.component';
 
 // Rutas
 const appRoutes: Routes = [

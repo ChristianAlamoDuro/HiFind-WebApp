@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataAplicationService } from '../../services/data-aplication.service';
+import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 
 @Component({
   selector: 'app-banner',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataAplicationService } from '../../services/data-aplication.service';
+import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 @Component({
   selector: 'app-web-map',
   templateUrl: './web-map.component.html',
@@ -13,7 +13,7 @@ export class WebMapComponent implements OnInit {
     this.dataService.getData().subscribe(
       result => {
         this.dataAplication = result;
-        
+
         console.log(this.dataAplication);
       }
     );
