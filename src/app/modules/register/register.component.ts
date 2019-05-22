@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     private dataService: DataAplicationService,
     private userService: UserClientService
   ) { }
-x
+
   ngOnInit() {
     this.dataService.getData().subscribe(
       result => {
@@ -33,6 +33,7 @@ x
       .subscribe(response => {
         console.log(response);
         form.reset();
+        this.dataService.createModal('Login sucessfull', 'You can use now our apis', 'success');
       },
       error => {
         console.log(error);

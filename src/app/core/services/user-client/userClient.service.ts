@@ -13,6 +13,10 @@ export class UserClientService {
     this.url = 'http://hifind-api.com/';
   }
 
+  /**
+   * Function to register user
+   * @param user
+   */
   register(user) {
     const json = JSON.stringify(user);
     const params = 'json=' + json;
@@ -21,6 +25,11 @@ export class UserClientService {
     return this.http.post(this.url + 'users/register', params, {headers});
   }
 
+  /**
+   * Funtion to loggin user
+   * @param user
+   * @param getToken
+   */
   signUp(user, getToken = null): Observable<any> {
     if (getToken != null) {
       user.getToken = 'true';
@@ -31,5 +40,16 @@ export class UserClientService {
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
     return this.http.post(this.url + 'users/login', params, {headers});
+  }
+
+  knowUserLogin() {
+    let login: boolean = false;
+    if (localStorage.getItem('user')) {
+      login = true;
+    } else {
+      login = false;
+    }
+
+    return login;
   }
 }

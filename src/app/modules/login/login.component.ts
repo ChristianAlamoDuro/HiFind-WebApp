@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 import { UserClientService } from '@services/user-client/userClient.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,6 +40,7 @@ export class LoginComponent implements OnInit {
       this.status = true;
       this.token = response;
       this.saveDataLocalStorage();
+      this.dataService.createToastTop('success', 'Account create');
     },
     error => {
       this.status = false;
