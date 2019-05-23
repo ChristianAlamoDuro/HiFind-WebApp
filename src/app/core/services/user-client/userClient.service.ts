@@ -10,7 +10,7 @@ export class UserClientService {
   constructor(
     public http: HttpClient
   ) {
-    this.url = 'http://hifind-api.com/';
+    this.url = 'http://localhost/HiFind-Api/public/';
   }
 
   /**
