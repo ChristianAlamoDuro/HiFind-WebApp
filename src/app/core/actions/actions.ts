@@ -15,7 +15,7 @@ export class Login implements Action {
 
 export class Logout implements Action {
     readonly type = UserActionsTypes.LOGOUT;
-    constructor() {}
+    constructor(public payload: any) {}
 }
 
 export class GetUser implements Action {

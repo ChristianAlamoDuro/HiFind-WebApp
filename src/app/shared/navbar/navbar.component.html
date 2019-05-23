@@ -9,12 +9,23 @@
     <i class="fa fa-bars"></i>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto ml-sm-1">
+    <ul class="navbar-nav mr-auto ml-sm-1" *ngIf="user === null">
       <li class="nav-item mr-1" routerLinkActive="active">
         <a class="nav-link" [routerLink]="[ '/home']">{{dataAplication.Navbar.home}}</a>
       </li>
       <li class="nav-item  mr-1" routerLinkActive="active">
         <a class="nav-link" [routerLink]="[ '/movies']">{{dataAplication.Navbar.movies}}</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto ml-sm-1" *ngIf="user !== null">
+      <li class="nav-item mr-1" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="[ '/homePremium']">{{dataAplication.Navbar.home}}</a>
+      </li>
+      <li class="nav-item  mr-1" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="[ '/moviesPremium']">{{dataAplication.Navbar.movies}}</a>
+      </li>
+      <li class="nav-item  mr-1" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="[ '/gamesPremium']">{{dataAplication.Navbar.games}}</a>
       </li>
     </ul>
     <div class="form-inline mr-auto form-desaparece-movil">
@@ -23,11 +34,18 @@
       <button (click)="searchMovie()" class="bg-busqueda btn btn-outline-success my-2 my-sm-0 rounded-pill"
         type="button"><i class="fa fa-search"></i></button>
     </div>
-    <ul class="navbar-nav ml-auto color-logeo">
+    <ul class="navbar-nav ml-auto color-logeo" *ngIf="user === null">
       <li class="nav-item mr-1">
         <a class="nav-link" [routerLink]="['/login']"><i class="fa fa-user"></i> {{dataAplication.Navbar.login}}</a> </li>
       <li class="nav-item mr-1">
         <a class="nav-link" [routerLink]="['/register']"><i class="fa fa-unlock-alt"></i> {{dataAplication.Navbar.register}}</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto color-logeo" *ngIf="user !== null">
+      <li class="nav-item mr-1">
+        <a class="nav-link" [routerLink]="['/userData']"><i class="fa fa-user"></i> {{user.userData.username}}</a> </li>
+      <li class="nav-item mr-1">
+        <a class="nav-link" [routerLink]="['/login']" (click)="logOut()"><i class="fa fa-user-times"></i> {{dataAplication.Generic.exit}}</a>
       </li>
     </ul>
   </div>

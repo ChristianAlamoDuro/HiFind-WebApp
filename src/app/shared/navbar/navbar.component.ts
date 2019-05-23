@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
+import { HelperService } from '@services/helper/helper.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -14,12 +15,14 @@ export class NavbarComponent implements OnInit {
   // nombre de la variable que obtendremos del input de busqueda
   public movieName: string;
   public dataAplication;
+  public user: any;
   // creamos la variable requestService de tipo publicMovieApiService
   constructor(
     private requestService: PublicMovieApiService,
     private router: Router,
     private dataService: DataAplicationService,
-    private store: Store<any>
+    private store: Store<any>,
+    private helperService: HelperService
   ) {
     this.getStore();
     this.getContentData();
@@ -42,14 +45,27 @@ export class NavbarComponent implements OnInit {
   }
 
   getStore() {
-    this.store
-    .pipe(
+    const self = this;
+
+    self.store.pipe(
       map(value => {
         return value.state;
       })
     )
     .subscribe(response => {
-        console.log(response);
-      });
+      if (typeof(response.userData) !== 'string' ) {
+        self.saveUserData(response);
+      } else {
+        this.user = null;
+      }
+    });
+  }
+
+  saveUserData(userData) {
+    this.user = userData;
+  }
+
+  logOut() {
+    this.helperService.dispatchLogOut();
   }
 }

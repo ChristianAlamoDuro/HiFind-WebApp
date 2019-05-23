@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GetUser } from '@core/actions/actions';
+import { GetUser, Logout, Login } from '@core/actions/actions';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,15 @@ export class HelperService {
   dispatchLogin() {
     const userData = JSON.parse(localStorage.getItem('user'));
 
-    this.store.dispatch(new GetUser(userData));
+    this.store.dispatch(new Login(userData));
+  }
+
+  dispatchLogOut() {
+    const userData = 'User not logged';
+
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+
+    this.store.dispatch(new Logout(userData));
   }
 }

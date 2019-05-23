@@ -52,13 +52,15 @@
     "comedy":"Comedy",
     "movies":"Movies",
     "categories":"Categories",
-    "videogames":"VideoGames"
+    "videogames":"VideoGames",
+    "exit":"Exit"
   },
   "Buttons":{
     "seeMore":"See more"
   },
   "Navbar":{
-    "home":"home",
+    "home":"Home",
+    "games":"VideoGames",
     "movies":"Movies",
     "login":"Login",
     "register":"Register"
