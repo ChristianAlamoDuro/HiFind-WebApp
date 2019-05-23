@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 import { UserClientService } from '@services/user-client/userClient.service';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { HelperService } from '@services/helper/helper.service';
 
 @Component({
@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     private dataService: DataAplicationService,
     private userClienteService: UserClientService,
     private store: Store<any>,
-    private helperService: HelperService
+    private helperService: HelperService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +60,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', self.token);
       localStorage.setItem('user', JSON.stringify(self.user));
       self.helperService.dispatchLogin();
+      self.dataService.createModal('success', 'Login successfull', 'Now you can use our premium apis');
+      this.router.navigate(['/homePremium']);
     },
     error => {
       this.status = false;

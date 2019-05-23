@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 import { User } from '@models/user';
 import { UserClientService } from '@services/user-client/userClient.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +15,10 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private dataService: DataAplicationService,
-    private userService: UserClientService
+    private userService: UserClientService,
+    private router: Router
   ) { }
-x
+
   ngOnInit() {
     this.dataService.getData().subscribe(
       result => {
@@ -29,10 +30,13 @@ x
   }
 
   onSubmit(form) {
+    const self = this;
     this.userService.register(this.user)
       .subscribe(response => {
         console.log(response);
         form.reset();
+        self.dataService.createToast('success', 'Acount create successfull');
+        this.router.navigate(['/login']);
       },
       error => {
         console.log(error);
