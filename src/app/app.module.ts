@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 
+// RXJS
+import { reducer } from '@core/reducers/reducer';
+import { StoreModule } from '@ngrx/store';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
@@ -40,7 +44,8 @@ import { WebMapComponent } from './modules/web-map/web-map.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    routing
+    routing,
+    StoreModule.forRoot({state: reducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

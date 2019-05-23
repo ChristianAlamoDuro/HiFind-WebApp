@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 import { UserClientService } from '@services/user-client/userClient.service';
-
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
+import { HelperService } from '@services/helper/helper.service';
 
 @Component({
   selector: 'app-login',
@@ -20,15 +22,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private dataService: DataAplicationService,
-    private userClienteService: UserClientService
+    private userClienteService: UserClientService,
+    private store: Store<any>,
+    private helperService: HelperService
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getData().subscribe(
-      result => {
-        this.dataAplication = result;
-      }
-    );
+    this.getContentData();
   }
 
   /**
@@ -52,15 +52,30 @@ export class LoginComponent implements OnInit {
    * Function for get Token and user data
    */
   saveDataLocalStorage() {
-    this.userClienteService.signUp(this.userData, true).subscribe(data => {
-      this.user = data;
-      localStorage.setItem('token', this.token);
-      localStorage.setItem('user', JSON.stringify(this.user));
+    const self = this;
+
+    self.userClienteService.signUp(self.userData, true).subscribe(data => {
+      self.user = data;
+      localStorage.setItem('token', self.token);
+      localStorage.setItem('user', JSON.stringify(self.user));
+      self.helperService.dispatchLogin();
     },
     error => {
       this.status = false;
       console.log(error);
     });
+  }
+
+  getContentData() {
+    this.dataService.getData().subscribe(
+      result => {
+        this.dataAplication = result;
+      }
+    );
+  }
+
+  dispatchLogin() {
+
   }
 
 }

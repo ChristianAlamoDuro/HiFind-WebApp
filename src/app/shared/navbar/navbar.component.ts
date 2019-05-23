@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PublicMovieApiService } from '@services/public-movie-api/public-movie-api.service';
 import { Router } from '@angular/router';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
-
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -17,13 +18,11 @@ export class NavbarComponent implements OnInit {
   constructor(
     private requestService: PublicMovieApiService,
     private router: Router,
-    private dataService: DataAplicationService
+    private dataService: DataAplicationService,
+    private store: Store<any>
   ) {
-    this.dataService.getData().subscribe(
-      result => {
-        this.dataAplication = result;
-      }
-    );
+    this.getStore();
+    this.getContentData();
   }
 
   ngOnInit() {
@@ -32,5 +31,25 @@ export class NavbarComponent implements OnInit {
   searchMovie() {
     this.router.navigate(['/searchResults/' + this.movieName]);
     this.movieName = '';
+  }
+
+  getContentData() {
+    this.dataService.getData().subscribe(
+      result => {
+        this.dataAplication = result;
+      }
+    );
+  }
+
+  getStore() {
+    this.store
+    .pipe(
+      map(value => {
+        return value.state;
+      })
+    )
+    .subscribe(response => {
+        console.log(response);
+      });
   }
 }
