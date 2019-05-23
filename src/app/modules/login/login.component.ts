@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
       this.status = true;
       this.token = response;
       this.saveDataLocalStorage();
-      this.dataService.createToastTop('success', 'Account create');
+      form.reset();
+      this.dataService.createModal('Login sucessfull', 'Now you can use our apis', 'success');
     },
     error => {
       this.status = false;

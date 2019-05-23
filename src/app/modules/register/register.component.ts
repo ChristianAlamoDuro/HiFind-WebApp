@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         form.reset();
-        this.dataService.createModal('Login sucessfull', 'You can use now our apis', 'success');
+        this.dataService.createToastTop('success', 'Account create');
       },
       error => {
         console.log(error);
