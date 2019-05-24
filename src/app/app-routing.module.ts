@@ -13,6 +13,7 @@ import { MoviesComponent } from './modules/movies/movies.component';
 import { WebMapComponent } from './modules/web-map/web-map.component';
 import { UserPremiumComponent } from '@modules/premium/user-premium/user-premium.component';
 import { VideogamesPremiumComponent } from '@modules/premium/videogames-premium/videogames-premium.component';
+import { MoviesPremiumComponent } from '@modules/premium/movies-premium/movies-premium.component';
 
 // Rutas
 const appRoutes: Routes = [
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'homePremium', component: UserPremiumComponent },
   { path: 'gamesPremium', component: VideogamesPremiumComponent },
+  { path: 'moviesPremium', component: MoviesPremiumComponent },
   { path: 'searchResults/:title', component: SearchResultsComponent },
   { path: 'more-info/:title', component: MoreInfoComponent },
   { path: 'movies', component: MoviesComponent },

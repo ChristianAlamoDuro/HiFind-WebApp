@@ -24,6 +24,7 @@ import { MoviesComponent } from './modules/movies/movies.component';
 import { WebMapComponent } from './modules/web-map/web-map.component';
 import { UserPremiumComponent } from './modules/premium/user-premium/user-premium.component';
 import { VideogamesPremiumComponent } from './modules/premium/videogames-premium/videogames-premium.component';
+import { MoviesPremiumComponent } from './modules/premium/movies-premium/movies-premium.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { VideogamesPremiumComponent } from './modules/premium/videogames-premium
     MoviesComponent,
     WebMapComponent,
     UserPremiumComponent,
-    VideogamesPremiumComponent
+    VideogamesPremiumComponent,
+    MoviesPremiumComponent
   ],
   imports: [
     BrowserModule,
