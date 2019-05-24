@@ -11,11 +11,11 @@
       <a routerLink="/homePremium/{{ category }}" class="nav-link">{{category}}</a>
     </div>
   </div>
-  <h4 class="text-muted mt-3">
-    {{dataAplication.Generic.videogames}}
-  </h4> 
-  <hr>
   <div *ngIf="movies === false || games === true">
+    <h4 class="text-muted mt-3">
+      {{dataAplication.Generic.videogames}}
+    </h4> 
+    <hr>
     <h4 class="text-muted">
       {{dataAplication.Generic.categories}}
     </h4>
