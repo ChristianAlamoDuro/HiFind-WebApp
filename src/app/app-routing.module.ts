@@ -12,12 +12,14 @@ import { MoreInfoComponent } from './modules/more-info/more-info.component';
 import { MoviesComponent } from './modules/movies/movies.component';
 import { WebMapComponent } from './modules/web-map/web-map.component';
 import { UserPremiumComponent } from '@modules/premium/user-premium/user-premium.component';
+import { VideogamesPremiumComponent } from '@modules/premium/videogames-premium/videogames-premium.component';
 
 // Rutas
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'homePremium', component: UserPremiumComponent },
+  { path: 'gamesPremium', component: VideogamesPremiumComponent },
   { path: 'searchResults/:title', component: SearchResultsComponent },
   { path: 'more-info/:title', component: MoreInfoComponent },
   { path: 'movies', component: MoviesComponent },

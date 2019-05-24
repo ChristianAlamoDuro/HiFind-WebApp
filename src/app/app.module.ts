@@ -23,6 +23,7 @@ import { MoreInfoComponent } from './modules/more-info/more-info.component';
 import { MoviesComponent } from './modules/movies/movies.component';
 import { WebMapComponent } from './modules/web-map/web-map.component';
 import { UserPremiumComponent } from './modules/premium/user-premium/user-premium.component';
+import { VideogamesPremiumComponent } from './modules/premium/videogames-premium/videogames-premium.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserPremiumComponent } from './modules/premium/user-premium/user-premiu
     MoreInfoComponent,
     MoviesComponent,
     WebMapComponent,
-    UserPremiumComponent
+    UserPremiumComponent,
+    VideogamesPremiumComponent
   ],
   imports: [
     BrowserModule,
