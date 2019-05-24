@@ -22,6 +22,7 @@ import { RegisterComponent } from './modules/register/register.component';
 import { MoreInfoComponent } from './modules/more-info/more-info.component';
 import { MoviesComponent } from './modules/movies/movies.component';
 import { WebMapComponent } from './modules/web-map/web-map.component';
+import { UserPremiumComponent } from './modules/premium/user-premium/user-premium.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { WebMapComponent } from './modules/web-map/web-map.component';
     RegisterComponent,
     MoreInfoComponent,
     MoviesComponent,
-    WebMapComponent
+    WebMapComponent,
+    UserPremiumComponent
   ],
   imports: [
     BrowserModule,

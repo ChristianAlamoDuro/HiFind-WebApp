@@ -21,6 +21,7 @@
     "paths": {
       "@services/*": ["src/app/core/services/*"],
       "@models/*": ["src/app/shared/models/*"],
+      "@modules/*": ["src/app/modules/*"],
       "@core/*": ["src/app/core/*"]
     }
   }

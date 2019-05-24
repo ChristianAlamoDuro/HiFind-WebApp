@@ -1,14 +1,22 @@
-<nav class="nav flex-column nav-lateral">
-  <h4 class="text-muted">{{dataAplication.Generic.movies}}</h4>
+<nav class="nav flex-column nav-lateral mt-3" *ngIf="dataAplication">
+  <h4 class="text-muted">
+    {{dataAplication.Generic.movies}}
+  </h4>
   <hr>
-  <h4 class="text-muted">{{dataAplication.Generic.categories}}</h4>
+  <h4 class="text-muted">
+    {{dataAplication.Generic.categories}}
+  </h4>
   <div *ngFor="let category of dataAplication?.Categories.Movies">
-    <a href="#" class="nav-link">{{category}}</a>
+    <a routerLink="/homePremium/{{ category }}" class="nav-link">{{category}}</a>
   </div>
-  <h4 class="text-muted mt-3">{{dataAplication.Generic.videogames}}</h4>
+  <h4 class="text-muted mt-3">
+    {{dataAplication.Generic.videogames}}
+  </h4>
   <hr>
-  <h4 class="text-muted">{{dataAplication.Generic.categories}}</h4>
+  <h4 class="text-muted">
+    {{dataAplication.Generic.categories}}
+  </h4>
   <div *ngFor="let category of dataAplication?.Categories.VideoGames">
-    <a href="#" class="nav-link">{{category}}</a>
+    <a routerLink="/homePremium/{{ category }}" class="nav-link">{{category}}</a>
   </div>
 </nav>
