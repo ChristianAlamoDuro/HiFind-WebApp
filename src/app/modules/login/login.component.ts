@@ -57,8 +57,8 @@ export class LoginComponent implements OnInit {
 
     self.userClienteService.signUp(self.userData, true).subscribe(data => {
       self.user = data;
-      localStorage.setItem('token', self.token);
-      localStorage.setItem('user', JSON.stringify(self.user));
+      sessionStorage.setItem('token', self.token);
+      sessionStorage.setItem('user', JSON.stringify(self.user));
       self.helperService.dispatchLogin();
       self.dataService.createModal('success', 'Login successfull', 'Now you can use our premium apis');
       this.router.navigate(['/homePremium']);

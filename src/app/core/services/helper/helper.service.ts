@@ -12,13 +12,13 @@ export class HelperService {
   ) { }
 
   initialInformation() {
-    const userData = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : 'User not logged';
+    const userData = sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')) : 'User not logged';
 
     this.store.dispatch(new GetUser(userData));
   }
 
   dispatchLogin() {
-    const userData = JSON.parse(localStorage.getItem('user'));
+    const userData = JSON.parse(sessionStorage.getItem('user'));
 
     this.store.dispatch(new Login(userData));
   }
@@ -26,8 +26,8 @@ export class HelperService {
   dispatchLogOut() {
     const userData = 'User not logged';
 
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
 
     this.store.dispatch(new Logout(userData));
   }
