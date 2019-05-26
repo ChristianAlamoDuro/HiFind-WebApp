@@ -1,0 +1,10 @@
+<app-menu-admin></app-menu-admin>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)">
+
+    <label for="categoryName">Name:</label>
+    <input type="text" formControlName="categoryName" name="categoryName"> <br>
+
+    <button type="submit" [disabled]="!formGroup.valid">
+        Send
+    </button>
+</form>

@@ -1,0 +1,20 @@
+<app-menu-admin></app-menu-admin>
+<form [formGroup]="formGame" (ngSubmit)="onSubmit(formGame)">
+    <label for="name">Name: </label>
+    <input type="text" formControlName="name" name="name"> <br>
+
+    <label for="sinopsis">Sinopsis: </label>
+    <input type="text" formControlName="sinopsis" name="sinopsis"> <br>
+
+    <label for="duration">Duration: </label>
+    <input type="text" formControlName="duration" name="duration"> <br>
+
+    <label for="publicDirected">Public directed: </label>
+    <input type="number" formControlName="publicDirected" name="publicDirected"> <br>
+
+    <input type="file" formControlName="image" name="image"> <br>
+
+    <button type="submit" [disabled]="!formGame.valid">
+        Send
+    </button>
+</form>

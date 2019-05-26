@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs mt-4">
+  <li class="nav-item " routerLinkActive="active">
+    <a class="nav-link adminMenu__item" [routerLink]="[ '/adminAddCategory']">{{ dataAplication?.Generic.categories }} </a>
+  </li>
+  <li class="nav-item" routerLinkActive="active">
+    <a class="nav-link adminMenu__item" [routerLink]="[ '/adminAddGame']">{{ dataAplication?.Generic.videogames }} </a>
+  </li>
+  <li class="nav-item" routerLinkActive="active">
+    <a class="nav-link adminMenu__item"[routerLink]="[ '/adminAddMovie']">{{ dataAplication?.Generic.movies }} </a>
+  </li>
+  <li class="nav-item" routerLinkActive="active">
+    <a class="nav-link adminMenu__item" [routerLink]="[ '/adminAddDirector']">{{ dataAplication?.Generic.director }} </a>
+  </li>
+  <li class="nav-item" routerLinkActive="active">
+    <a class="nav-link adminMenu__item" [routerLink]="[ '/adminAddActor']">{{ dataAplication?.Generic.actors }} </a>
+  </li>
+</ul>

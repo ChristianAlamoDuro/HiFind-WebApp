@@ -14,10 +14,21 @@ import { WebMapComponent } from './modules/web-map/web-map.component';
 import { UserPremiumComponent } from '@modules/premium/user-premium/user-premium.component';
 import { VideogamesPremiumComponent } from '@modules/premium/videogames-premium/videogames-premium.component';
 import { MoviesPremiumComponent } from '@modules/premium/movies-premium/movies-premium.component';
+import { AddGameComponent } from '@modules/admin/add-game/add-game.component';
+import { AddMovieComponent } from '@modules/admin/add-movie/add-movie.component';
+import { AddCategoryComponent } from '@modules/admin/add-category/add-category.component';
+import { AddDirectorComponent } from '@modules/admin/add-director/add-director.component';
+import { AddActorComponent } from '@modules/admin/add-actor/add-actor.component';
+
 
 // Rutas
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'adminAddGame', component: AddGameComponent },
+  { path: 'adminAddMovie', component: AddMovieComponent },
+  { path: 'adminAddCategory', component: AddCategoryComponent },
+  { path: 'adminAddDirector', component: AddDirectorComponent },
+  { path: 'adminAddActor', component: AddActorComponent },
   { path: 'home', component: HomeComponent },
   { path: 'homePremium', component: UserPremiumComponent },
   { path: 'gamesPremium', component: VideogamesPremiumComponent },

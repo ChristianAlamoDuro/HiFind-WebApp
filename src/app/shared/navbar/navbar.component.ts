@@ -56,13 +56,14 @@ export class NavbarComponent implements OnInit {
       if (typeof(response.userData) !== 'string' ) {
         self.saveUserData(response);
       } else {
-        this.user = null;
+        this.user = 'not logged';
       }
     });
   }
 
   saveUserData(userData) {
     this.user = userData;
+    console.log(this.user);
   }
 
   logOut() {
