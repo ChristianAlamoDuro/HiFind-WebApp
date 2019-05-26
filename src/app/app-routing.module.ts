@@ -19,6 +19,7 @@ import { AddMovieComponent } from '@modules/admin/add-movie/add-movie.component'
 import { AddCategoryComponent } from '@modules/admin/add-category/add-category.component';
 import { AddDirectorComponent } from '@modules/admin/add-director/add-director.component';
 import { AddActorComponent } from '@modules/admin/add-actor/add-actor.component';
+import { ShowAllComponent } from '@modules/admin/show-all/show-all.component';
 
 
 // Rutas
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
   { path: 'adminAddCategory', component: AddCategoryComponent },
   { path: 'adminAddDirector', component: AddDirectorComponent },
   { path: 'adminAddActor', component: AddActorComponent },
+  { path: 'adminShow/:type', component: ShowAllComponent},
   { path: 'home', component: HomeComponent },
   { path: 'homePremium', component: UserPremiumComponent },
   { path: 'gamesPremium', component: VideogamesPremiumComponent },

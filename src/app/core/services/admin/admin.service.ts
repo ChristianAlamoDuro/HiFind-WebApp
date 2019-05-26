@@ -30,4 +30,16 @@ export class AdminService {
 
     return this.http.post(this.url + 'games', params, {headers});
   }
+
+  getAllCategories() {
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.get(this.url + 'categories', {headers});
+  }
+
+  getAllGames() {
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.get(this.url + 'games', {headers});
+  }
 }

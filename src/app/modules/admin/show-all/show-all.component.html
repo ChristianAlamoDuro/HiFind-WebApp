@@ -1,0 +1,11 @@
+<div *ngIf="typeToShow === 'categories'">
+  <div *ngFor="let category of data">
+    {{ category.name }}
+  </div>
+</div>
+
+<div *ngIf="typeToShow === 'games'">
+  <div *ngFor="let game of data">
+    {{ game.name }}
+  </div>
+</div>

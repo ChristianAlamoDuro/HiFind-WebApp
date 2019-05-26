@@ -31,6 +31,7 @@ import { AddGameComponent } from './modules/admin/add-game/add-game.component';
 import { AddMovieComponent } from './modules/admin/add-movie/add-movie.component';
 import { AddDirectorComponent } from './modules/admin/add-director/add-director.component';
 import { AddActorComponent } from './modules/admin/add-actor/add-actor.component';
+import { ShowAllComponent } from './modules/admin/show-all/show-all.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AddActorComponent } from './modules/admin/add-actor/add-actor.component
     AddGameComponent,
     AddMovieComponent,
     AddDirectorComponent,
-    AddActorComponent
+    AddActorComponent,
+    ShowAllComponent
   ],
   imports: [
     BrowserModule,
