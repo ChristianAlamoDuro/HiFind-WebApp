@@ -56,12 +56,21 @@ export class LoginComponent implements OnInit {
     const self = this;
 
     self.userClienteService.signUp(self.userData, true).subscribe(data => {
-      self.user = data;
-      sessionStorage.setItem('token', self.token);
-      sessionStorage.setItem('user', JSON.stringify(self.user));
-      self.helperService.dispatchLogin();
-      self.dataService.createModal('success', 'Login successfull', 'Now you can use our premium apis');
-      this.router.navigate(['/homePremium']);
+      if (data.status !== 'error') {
+        self.user = data;
+        sessionStorage.setItem('token', self.token);
+        sessionStorage.setItem('user', JSON.stringify(self.user));
+        console.log(this.user);
+        self.helperService.dispatchLogin();
+        self.dataService.createModal('success', 'Login successfull', 'Now you can use our premium apis');
+        if (this.user.role === 'ROLE_ADMIN') {
+          this.router.navigate(['/adminShow/games']);
+        } else {
+          this.router.navigate(['/homePremium']);
+        }
+      } else {
+        self.dataService.createModal('error', 'Login fail', 'Your email or password are incorrent');
+      }
     },
     error => {
       this.status = false;

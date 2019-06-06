@@ -45,6 +45,8 @@ export class AddCategoryComponent implements OnInit {
                     finalize(() => this.createForm())
                 )
                 .subscribe(response => {
+                    console.log(response);
+
                     this.categoryNameValue = response.name;
                     this.selectedValue = 'is_movie';
                 });
