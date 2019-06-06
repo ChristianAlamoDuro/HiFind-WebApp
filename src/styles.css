@@ -91,6 +91,9 @@ ul li.active a {
 .form-aparece-movil {
   display: block;
 }
+.swal2-confirm {
+  margin-left: 5px;
+}
 
 @media (min-width: 991px) {
   .form-desaparece-movil {

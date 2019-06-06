@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicMovieApiService } from '@services/public-movie-api/public-movie-api.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
@@ -12,10 +12,11 @@ import { HelperService } from '@services/helper/helper.service';
   providers: [PublicMovieApiService]
 })
 export class NavbarComponent implements OnInit {
-  // nombre de la variable que obtendremos del input de busqueda
+
   public movieName: string;
   public dataAplication;
   public user: any;
+  public show: boolean;
   // creamos la variable requestService de tipo publicMovieApiService
   constructor(
     private requestService: PublicMovieApiService,
@@ -26,9 +27,11 @@ export class NavbarComponent implements OnInit {
   ) {
     this.getStore();
     this.getContentData();
+    this.show = false;
   }
 
   ngOnInit() {
+    this.detectedChangeRoute();    
   }
   // Realizamos una peticion a la api para obterner la información de la busqueda introducida en la barra de busqueda
   searchMovie() {
@@ -66,6 +69,23 @@ export class NavbarComponent implements OnInit {
     console.log(this.user);
   }
 
+    /**
+     * Function to detect when route change
+     */
+    detectedChangeRoute(): void {
+      this.router.events.forEach((event) => {
+          if (event instanceof NavigationEnd) {
+            this.closeNavbar();
+          }
+      });
+  }
+
+  closeNavbar() {
+    const nav = document.getElementById('navbarSupportedContent');
+    if (nav !== null && nav.classList[nav.classList.length - 1] === 'show') {
+      nav.classList.remove('show');
+    }
+  }
   logOut() {
     this.helperService.dispatchLogOut();
   }

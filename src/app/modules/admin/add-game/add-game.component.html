@@ -1,20 +1,37 @@
-<app-menu-admin></app-menu-admin>
-<form [formGroup]="formGame" (ngSubmit)="onSubmit(formGame)">
-    <label for="name">Name: </label>
-    <input type="text" formControlName="name" name="name"> <br>
+<div class="container-fluid">
+    <div class="row">
+        <app-menu-admin class="shadow-lg"></app-menu-admin>
+        <div class="col-10 ml-5">
+            <h2 class="mt-4">{{ title }}</h2>
+            <form [formGroup]="formGame" (ngSubmit)="onSubmit(formGame)">
+                <div class="form-group mt-2">
+                    <input type="text" placeholder="Name" class="form-control col-6" formControlName="name" name="name"> <br>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" placeholder="Duration" class="form-control col-6" formControlName="duration" name="duration"> <br>
+                </div>
 
-    <label for="sinopsis">Sinopsis: </label>
-    <input type="text" formControlName="sinopsis" name="sinopsis"> <br>
+                <div class="form-group">
+                    <input type="number" placeholder="Public directed" class="form-control col-6" formControlName="publicDirected" name="publicDirected"> <br>
+                </div>
+                <div class="form-group">
+                        <input type="text" placeholder="Out date" class="form-control col-6" formControlName="outDate" name="outDate"> <br>
+                </div>
 
-    <label for="duration">Duration: </label>
-    <input type="text" formControlName="duration" name="duration"> <br>
+                <div class="form-group">
+                        <textarea placeholder="Sinopsis" name="Sinopsis" class="form-control col-6" formControlName="sinopsis" cols="10" rows="10"></textarea>
+                </div>
 
-    <label for="publicDirected">Public directed: </label>
-    <input type="number" formControlName="publicDirected" name="publicDirected"> <br>
-
-    <input type="file" formControlName="image" name="image"> <br>
-
-    <button type="submit" [disabled]="!formGame.valid">
-        Send
-    </button>
-</form>
+                <div class="form-group">
+                    <input type="file" class="form-control-file" formControlName="image" name="image"> <br>
+                </div>
+                <div class="text-center col-6">
+                    <button type="submit" class="btn btn-primary col-3" [disabled]="!formGame.valid">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

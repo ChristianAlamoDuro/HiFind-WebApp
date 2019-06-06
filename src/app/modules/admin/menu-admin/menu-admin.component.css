@@ -1,19 +1,8 @@
 /*Estilos aplicados a las pestañas secundarias del menu de galeria*/
-/* ul>li.nav-item.active{
-	background: linear-gradient(135deg, rgba(101, 52, 247, 1) 0%, rgba(218, 24, 240, 1) 100%);
-	color: #ffffff;
-	font-weight: bold;
+
+.nav-link {
+	padding: 10px 0; 
 }
-
-li.nav-item>a{
-	color:#000000;
-}
-
-ul.nav>li.nav-item>a:hover{
-	color:#4d1ba0;
-	font-weight: bold;
-} */
-
 .adminMenu__item {
 	color:#000000;
 }
@@ -21,6 +10,7 @@ ul.nav>li.nav-item>a:hover{
 .adminMenu__item:hover {
 	color:#4d1ba0;
 	font-weight: bold;
+	border-color: rgba(0, 0, 0, 0);;
 }
 li.active {
 	background: linear-gradient(135deg, rgba(101, 52, 247, 1) 0%, rgba(218, 24, 240, 1) 100%);
@@ -29,3 +19,23 @@ li.active {
 li.active a {
 	color: #ffffff;
 }
+li.active a:hover {
+	border-color: rgba(0, 0, 0, 0);
+}
+
+.adminMenu--hideDesktop {
+	display: flex;
+	flex-wrap: wrap;
+  }
+.adminMenu--hideMobile {
+	display: none;
+}
+
+@media (min-width: 991px) {
+	.adminMenu--hideDesktop {
+		display: none;
+	}
+	.adminMenu--hideMobile {
+		display: block;
+	}
+ }

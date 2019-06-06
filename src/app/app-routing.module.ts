@@ -21,16 +21,18 @@ import { AddDirectorComponent } from '@modules/admin/add-director/add-director.c
 import { AddActorComponent } from '@modules/admin/add-actor/add-actor.component';
 import { ShowAllComponent } from '@modules/admin/show-all/show-all.component';
 
+import { GuardGuard } from '@core/guards/guard.guard';
 
 // Rutas
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'adminAddGame', component: AddGameComponent },
-  { path: 'adminAddMovie', component: AddMovieComponent },
-  { path: 'adminAddCategory', component: AddCategoryComponent },
-  { path: 'adminAddDirector', component: AddDirectorComponent },
-  { path: 'adminAddActor', component: AddActorComponent },
-  { path: 'adminShow/:type', component: ShowAllComponent},
+  { path: 'adminAddGame', component: AddGameComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddMovie', component: AddMovieComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddCategory', component: AddCategoryComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddCategory/:id', component: AddCategoryComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddDirector', component: AddDirectorComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddActor', component: AddActorComponent, canActivate: [GuardGuard] },
+  { path: 'adminShow/:type', component: ShowAllComponent, canActivate: [GuardGuard]},
   { path: 'home', component: HomeComponent },
   { path: 'homePremium', component: UserPremiumComponent },
   { path: 'gamesPremium', component: VideogamesPremiumComponent },

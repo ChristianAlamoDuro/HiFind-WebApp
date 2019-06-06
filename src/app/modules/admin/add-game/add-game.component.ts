@@ -12,6 +12,7 @@ export class AddGameComponent implements OnInit {
 
   public formGame: any;
   public dataAplication: any;
+  public title: string;
 
   constructor(
     private dataService: DataAplicationService,
@@ -20,6 +21,7 @@ export class AddGameComponent implements OnInit {
   ) {
     this.getDataAplication();
     this.createForm();
+    this.title = 'Add new video-game';
   }
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class AddGameComponent implements OnInit {
       sinopsis: [null, Validators.compose([Validators.required,  Validators.pattern('^[a-zA-Z]{1}[a-zA-Z ]*[a-zA-Z]$')])],
       duration: [null, Validators.compose([Validators.required,  Validators.pattern('^[0-9]{2}:[0-9]{2}$')])],
       publicDirected: [null, Validators.compose([Validators.required,  Validators.min(3), Validators.max(21)])],
+      outDate: [null, Validators.compose([Validators.required,  Validators.pattern('^[0-9]{2}:[0-9]{2}$')])],
       image: null
     });
   }
