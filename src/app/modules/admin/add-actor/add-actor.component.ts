@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '@services/admin/admin.service';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-add-actor',
@@ -15,18 +16,42 @@ export class AddActorComponent implements OnInit {
     public title: string;
     public userId: string;
     public formGroup: FormGroup;
+    public actorId: string;
+    public name: string;
+    public surname: string;
+    public birthday: string;
+    public biography: string;
+    public image: any;
 
     constructor(
         private store: Store<any>,
         private formBuilder: FormBuilder,
         private adminService: AdminService,
-        private dataService: DataAplicationService
+        private dataService: DataAplicationService,
+        private route: ActivatedRoute
     ) {
         this.title = 'Add actor';
     }
 
     ngOnInit() {
-        this.createForm();
+        this.takeParamsUrl();
+    }
+
+    takeParamsUrl() {
+        this.actorId = this.route.snapshot.paramMap.get('id');
+
+        if (this.actorId) {
+            this.adminService.getGame(this.actorId)
+                .pipe(
+                    map(response => response['actors']),
+                    finalize(() => this.createForm())
+                )
+                .subscribe(response => {
+                    // FILM DATA
+                });
+        } else {
+            this.createForm();
+        }
     }
 
     getStore() {
@@ -45,29 +70,29 @@ export class AddActorComponent implements OnInit {
     createForm() {
         this.formGroup = this.formBuilder.group({
             actorName: [
-                '',
+                this.name,
                 Validators.compose([
                     Validators.required,
                     Validators.pattern('^[a-zA-Z]{1}[a-zA-Z ]*[a-zA-Z]$')
                 ])
             ],
             actorSurname: [
-                '',
+                this.surname,
                 Validators.compose([
                     Validators.required,
                     Validators.pattern('^[a-zA-Z]{1}[a-zA-Z ]*[a-zA-Z]$')
                 ])
             ],
             actorBirthday: [
-                '',
+                this.birthday,
                 Validators.compose([Validators.required, Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[12]{1}[0-9]{3}$')])
             ],
             biography: [
-                '',
+                this.biography,
                 Validators.compose([Validators.required])
             ],
             image: [
-                null
+                this.image
             ]
         });
     }

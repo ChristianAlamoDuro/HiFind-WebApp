@@ -35,7 +35,6 @@ export class AddGameComponent implements OnInit {
         private store: Store<any>
     ) {
         this.getDataAplication();
-        this.createForm();
         this.title = 'Add new video-game';
         this.categoriesSelected = [];
         this.getStore();
@@ -56,8 +55,10 @@ export class AddGameComponent implements OnInit {
                     finalize(() => this.createForm())
                 )
                 .subscribe(response => {
-                    this.gameNameValue = response[0].name;
+                    //this.gameNameValue = response[0].name;
                 });
+        } else {
+            this.createForm();
         }
     }
 
