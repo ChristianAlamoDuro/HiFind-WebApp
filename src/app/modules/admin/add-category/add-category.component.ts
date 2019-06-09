@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '@core/services/admin/admin.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, finalize } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-add-category',
     templateUrl: './add-category.component.html',
-    styleUrls: ['./add-category.component.css']
+    styleUrls: ['./add-category.component.sass']
 })
 export class AddCategoryComponent implements OnInit {
 
@@ -19,20 +20,36 @@ export class AddCategoryComponent implements OnInit {
     public categoryId: string;
     public selectedValue: string;
     public categoryNameValue = '';
+    public userId: string;
 
     constructor(
         private dataService: DataAplicationService,
         private formBuilder: FormBuilder,
         private adminService: AdminService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private store: Store<any>
     ) {
         this.getDataAplication();
         this.title = 'Add category';
+        this.getStore();
     }
 
     ngOnInit() {
         this.takeParamsUrl();
         this.createForm();
+    }
+
+    getStore() {
+        const self = this;
+
+        self.store.pipe(
+          map(value => {
+            return value.state['userData'];
+          })
+        )
+        .subscribe(response => {
+           self.userId = response.sub;
+        });
     }
 
     takeParamsUrl() {
@@ -45,10 +62,8 @@ export class AddCategoryComponent implements OnInit {
                     finalize(() => this.createForm())
                 )
                 .subscribe(response => {
-                    console.log(response);
-
-                    this.categoryNameValue = response.name;
-                    this.selectedValue = 'is_movie';
+                    this.categoryNameValue = response[0].name;
+                    this.selectedValue = response[0].special_category;
                 });
         } else {
             this.selectedValue = 'is_special_game';
@@ -74,22 +89,36 @@ export class AddCategoryComponent implements OnInit {
                 ])
             ],
             categoryType: [
-                null,
+                this.selectedValue,
                 Validators.required
             ]
         });
     }
 
     onSubmit(formGroup) {
-        const data = {
-            name: formGroup.value.categoryName,
-            special_category : formGroup.value.categoryType
-        };
+        let data;
+        if (this.categoryId) {
+            data = {
+                name: formGroup.value.categoryName,
+                special_category: formGroup.value.categoryType,
+                id: this.categoryId,
+                user_id: this.userId
+            };
+        } else {
+            data = {
+                name: formGroup.value.categoryName,
+                special_category: formGroup.value.categoryType,
+                user_id: this.userId
+            };
+        }
+        console.log(data);
+        
         this.adminService.addCategory(data).subscribe(
             response => {
                 console.log(response);
             }
         );
+
     }
 
 }

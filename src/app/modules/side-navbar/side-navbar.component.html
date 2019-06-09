@@ -7,8 +7,8 @@
     <h4 class="text-muted">
       {{dataAplication.Generic.categories}}
     </h4>
-    <div *ngFor="let category of dataAplication?.Categories.Movies">
-      <a routerLink="/homePremium/{{ category }}" class="nav-link">{{category}}</a>
+    <div *ngFor="let category of categoryMovies">
+      <a routerLink="/{{ url }}/{{ category }}" class="nav-link">{{category}}</a>
     </div>
   </div>
   <div *ngIf="movies === false || games === true">
@@ -19,8 +19,8 @@
     <h4 class="text-muted">
       {{dataAplication.Generic.categories}}
     </h4>
-    <div *ngFor="let category of dataAplication?.Categories.VideoGames">
-      <a routerLink="/homePremium/{{ category }}" class="nav-link">{{category}}</a>
+    <div *ngFor="let category of categoriesGames">
+      <a routerLink="/{{ url }}/{{ category }}" class="nav-link">{{category}}</a>
     </div>
   </div>
 </nav>

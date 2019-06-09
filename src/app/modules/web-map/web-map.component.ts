@@ -3,7 +3,7 @@ import { DataAplicationService } from '@services/data-aplication/data-aplication
 @Component({
   selector: 'app-web-map',
   templateUrl: './web-map.component.html',
-  styleUrls: ['./web-map.component.css']
+  styleUrls: ['./web-map.component.sass']
 })
 export class WebMapComponent implements OnInit {
   public dataAplication;

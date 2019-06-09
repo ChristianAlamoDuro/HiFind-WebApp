@@ -4,7 +4,7 @@ import { DataAplicationService } from '@services/data-aplication/data-aplication
 @Component({
   selector: 'app-menu-admin',
   templateUrl: './menu-admin.component.html',
-  styleUrls: ['./menu-admin.component.css']
+  styleUrls: ['./menu-admin.component.sass']
 })
 export class MenuAdminComponent implements OnInit {
 

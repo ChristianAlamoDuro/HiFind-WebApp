@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
-  styleUrls: ['./add-movie.component.css']
+  styleUrls: ['./add-movie.component.sass']
 })
 export class AddMovieComponent implements OnInit {
 

@@ -8,7 +8,7 @@ import { HelperService } from '@services/helper/helper.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  styleUrls: ['./navbar.component.sass'],
   providers: [PublicMovieApiService]
 })
 export class NavbarComponent implements OnInit {
@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.detectedChangeRoute();    
+    this.detectedChangeRoute();
   }
   // Realizamos una peticion a la api para obterner la información de la busqueda introducida en la barra de busqueda
   searchMovie() {

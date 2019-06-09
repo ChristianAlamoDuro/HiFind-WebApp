@@ -3,13 +3,13 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // importar componentes
-import { HomeComponent } from './modules/home/home.component';
+import { HomeComponent } from './modules/notLogged/home/home.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { SearchResultsComponent } from './modules/search-results/search-results.component';
-import { LoginComponent } from './modules/login/login.component';
-import { RegisterComponent } from './modules/register/register.component';
-import { MoreInfoComponent } from './modules/more-info/more-info.component';
-import { MoviesComponent } from './modules/movies/movies.component';
+import { SearchResultsComponent } from './modules/notLogged/search-results/search-results.component';
+import { LoginComponent } from './modules/notLogged/login/login.component';
+import { RegisterComponent } from './modules/notLogged/register/register.component';
+import { MoreInfoComponent } from './modules/notLogged/more-info/more-info.component';
+import { MoviesComponent } from './modules/notLogged/movies/movies.component';
 import { WebMapComponent } from './modules/web-map/web-map.component';
 import { UserPremiumComponent } from '@modules/premium/user-premium/user-premium.component';
 import { VideogamesPremiumComponent } from '@modules/premium/videogames-premium/videogames-premium.component';
@@ -20,6 +20,7 @@ import { AddCategoryComponent } from '@modules/admin/add-category/add-category.c
 import { AddDirectorComponent } from '@modules/admin/add-director/add-director.component';
 import { AddActorComponent } from '@modules/admin/add-actor/add-actor.component';
 import { ShowAllComponent } from '@modules/admin/show-all/show-all.component';
+import { HomePremiumComponent } from './modules/premium/home-premium/home-premium.component';
 
 import { GuardGuard } from '@core/guards/guard.guard';
 
@@ -27,15 +28,20 @@ import { GuardGuard } from '@core/guards/guard.guard';
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'adminAddGame', component: AddGameComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddGame/:id', component: AddGameComponent, canActivate: [GuardGuard] },
   { path: 'adminAddMovie', component: AddMovieComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddMovie/:id', component: AddMovieComponent, canActivate: [GuardGuard] },
   { path: 'adminAddCategory', component: AddCategoryComponent, canActivate: [GuardGuard] },
   { path: 'adminAddCategory/:id', component: AddCategoryComponent, canActivate: [GuardGuard] },
   { path: 'adminAddDirector', component: AddDirectorComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddDirector/:id', component: AddDirectorComponent, canActivate: [GuardGuard] },
   { path: 'adminAddActor', component: AddActorComponent, canActivate: [GuardGuard] },
+  { path: 'adminAddActor/:id', component: AddActorComponent, canActivate: [GuardGuard] },
   { path: 'adminShow/:type', component: ShowAllComponent, canActivate: [GuardGuard]},
   { path: 'home', component: HomeComponent },
-  { path: 'homePremium', component: UserPremiumComponent },
+  { path: 'homePremium', component: HomePremiumComponent },
   { path: 'gamesPremium', component: VideogamesPremiumComponent },
+  { path: 'gamesPremium/:type', component: VideogamesPremiumComponent },
   { path: 'moviesPremium', component: MoviesPremiumComponent },
   { path: 'searchResults/:title', component: SearchResultsComponent },
   { path: 'more-info/:title', component: MoreInfoComponent },

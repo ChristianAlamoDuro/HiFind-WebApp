@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './modules/home/home.component';
+import { HomeComponent } from './modules/notLogged/home/home.component';
 import { SideNavBarComponent } from './modules/side-navbar/side-navbar.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -16,11 +16,11 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { routing, AppRoutingProviders } from './app-routing.module';
-import { SearchResultsComponent } from './modules/search-results/search-results.component';
-import { LoginComponent } from './modules/login/login.component';
-import { RegisterComponent } from './modules/register/register.component';
-import { MoreInfoComponent } from './modules/more-info/more-info.component';
-import { MoviesComponent } from './modules/movies/movies.component';
+import { SearchResultsComponent } from './modules/notLogged/search-results/search-results.component';
+import { LoginComponent } from './modules/notLogged/login/login.component';
+import { RegisterComponent } from './modules/notLogged/register/register.component';
+import { MoreInfoComponent } from './modules/notLogged/more-info/more-info.component';
+import { MoviesComponent } from './modules/notLogged/movies/movies.component';
 import { WebMapComponent } from './modules/web-map/web-map.component';
 import { UserPremiumComponent } from './modules/premium/user-premium/user-premium.component';
 import { VideogamesPremiumComponent } from './modules/premium/videogames-premium/videogames-premium.component';
@@ -32,6 +32,7 @@ import { AddMovieComponent } from './modules/admin/add-movie/add-movie.component
 import { AddDirectorComponent } from './modules/admin/add-director/add-director.component';
 import { AddActorComponent } from './modules/admin/add-actor/add-actor.component';
 import { ShowAllComponent } from './modules/admin/show-all/show-all.component';
+import { HomePremiumComponent } from './modules/premium/home-premium/home-premium.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ShowAllComponent } from './modules/admin/show-all/show-all.component';
     AddMovieComponent,
     AddDirectorComponent,
     AddActorComponent,
-    ShowAllComponent
+    ShowAllComponent,
+    HomePremiumComponent
   ],
   imports: [
     BrowserModule,

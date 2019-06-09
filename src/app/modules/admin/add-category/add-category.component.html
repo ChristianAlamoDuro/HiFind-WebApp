@@ -1,6 +1,6 @@
+<app-menu-admin class="shadow-lg"></app-menu-admin>
 <div class="container-fluid">
     <div class="row">
-        <app-menu-admin class="shadow-lg"></app-menu-admin>
         <div class="col-10 ml-4">
             <h2 class="mt-4">{{ title }}</h2>
             <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)">
@@ -18,7 +18,7 @@
                       </select>
                 </div>
                 <div class="text-center col-6">
-                    <button type="submit" class="btn btn-primary col-3" [disabled]="!formGroup.valid">
+                    <button type="submit" class="btn btn-primary col-12 col-md-3" [disabled]="!formGroup.valid">
                         Send
                     </button>
                 </div>

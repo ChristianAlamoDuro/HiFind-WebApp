@@ -4,7 +4,7 @@ import { DataAplicationService } from '@services/data-aplication/data-aplication
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.sass']
 })
 export class FooterComponent implements OnInit {
 

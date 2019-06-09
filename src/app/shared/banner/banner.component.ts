@@ -4,7 +4,7 @@ import { DataAplicationService } from '@services/data-aplication/data-aplication
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.css']
+  styleUrls: ['./banner.component.sass']
 })
 export class BannerComponent implements OnInit {
 

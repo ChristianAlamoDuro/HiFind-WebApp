@@ -1,5 +1,35 @@
+<app-menu-admin class="shadow-lg"></app-menu-admin>
 <div class="container-fluid">
     <div class="row">
-        <app-menu-admin class="shadow-lg"></app-menu-admin>
+        <div class="col-10 ml-4">
+            <h2 class="mt-4">{{ title }}</h2>
+            <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)">
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" placeholder="Name" formControlName="directorName" name="directorName"> <br>
+                </div>
+
+                <div class="form-group">
+                        <input type="text" class="form-control col-6" placeholder="Surname" formControlName="directorSurname" name="directorSurname"> <br>
+                </div>
+
+                <div class="form-group">
+                        <input type="text" class="form-control col-6" placeholder="Birthday" formControlName="directorBirthday" name="directorBirthday"> <br>
+                </div>
+
+                <div class="form-group">
+                        <textarea placeholder="Biography" name="biography" class="form-control col-10 col-lg-6" formControlName="biography" cols="10" rows="10"></textarea>
+                </div>
+
+                <div class="form-group">
+                        <input type="file" class="form-control-file" formControlName="image" name="image"> <br>
+                </div>
+
+                <div class="text-center col-6">
+                    <button type="submit" class="btn btn-primary col-12 col-md-3" [disabled]="!formGroup.valid">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

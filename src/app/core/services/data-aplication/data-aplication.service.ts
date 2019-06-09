@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { AdminService } from '@services/admin/admin.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,6 @@ export class DataAplicationService {
   public response: string;
   constructor(
     public http: HttpClient
-
   ) {
     this.url = './assets/data.json';
     this.response = 'json';

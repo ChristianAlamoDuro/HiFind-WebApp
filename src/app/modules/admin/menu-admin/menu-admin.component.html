@@ -1,37 +1,17 @@
-<ul class="nav nav-tabs mt-4 adminMenu--hideDesktop mt-4">
-  <li class="nav-item " routerLinkActive="active">
-    <a class="nav-link adminMenu__item" [routerLink]="[ '/adminAddCategory']">{{ dataAplication?.Generic.categories }} </a>
+<ul class="nav nav-tabs">
+  <li class="nav-item adminMenu__item" routerLinkActive="active">
+    <a class="nav-link adminMenu__link" [routerLink]="[ '/adminAddCategory']">{{ dataAplication?.Generic.categories }} </a>
   </li>
-  <li class="nav-item" routerLinkActive="active">
-    <a class="nav-link adminMenu__item" [routerLink]="[ '/adminAddGame']">{{ dataAplication?.Generic.videogames }} </a>
+  <li class="nav-item adminMenu__item" routerLinkActive="active">
+    <a class="nav-link adminMenu__link" [routerLink]="[ '/adminAddGame']">{{ dataAplication?.Generic.videogames }} </a>
   </li>
-  <li class="nav-item" routerLinkActive="active">
-    <a class="nav-link adminMenu__item"[routerLink]="[ '/adminAddMovie']">{{ dataAplication?.Generic.movies }} </a>
+  <li class="nav-item adminMenu__item" routerLinkActive="active">
+    <a class="nav-link adminMenu__link"[routerLink]="[ '/adminAddMovie']">{{ dataAplication?.Generic.movies }} </a>
   </li>
-  <li class="nav-item" routerLinkActive="active">
-    <a class="nav-link adminMenu__item" [routerLink]="[ '/adminAddDirector']">{{ dataAplication?.Generic.director }} </a>
+  <li class="nav-item adminMenu__item" routerLinkActive="active">
+    <a class="nav-link adminMenu__link" [routerLink]="[ '/adminAddDirector']">{{ dataAplication?.Generic.director }} </a>
   </li>
-  <li class="nav-item" routerLinkActive="active">
-    <a class="nav-link adminMenu__item" [routerLink]="[ '/adminAddActor']">{{ dataAplication?.Generic.actors }} </a>
+  <li class="nav-item adminMenu__item" routerLinkActive="active">
+    <a class="nav-link adminMenu__link" [routerLink]="[ '/adminAddActor']">{{ dataAplication?.Generic.actors }} </a>
   </li>
 </ul>
-
-<div class="col-12 col-lg-2 adminMenu--hideMobile mt-4">
-  <ul class="nav nav-tabs flex-column">
-    <li class="nav-item " routerLinkActive="active">
-      <a class="mx-3 nav-link adminMenu__item" [routerLink]="[ '/adminAddCategory']">{{ dataAplication?.Generic.categories }} </a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="mx-3 nav-link adminMenu__item" [routerLink]="[ '/adminAddGame']">{{ dataAplication?.Generic.videogames }} </a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="mx-3 nav-link adminMenu__item"[routerLink]="[ '/adminAddMovie']">{{ dataAplication?.Generic.movies }} </a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="mx-3 nav-link adminMenu__item" [routerLink]="[ '/adminAddDirector']">{{ dataAplication?.Generic.director }} </a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="mx-3 nav-link adminMenu__item" [routerLink]="[ '/adminAddActor']">{{ dataAplication?.Generic.actors }} </a>
-    </li>
-  </ul>
-</div>
