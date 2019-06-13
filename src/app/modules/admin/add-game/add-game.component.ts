@@ -24,8 +24,9 @@ export class AddGameComponent implements OnInit {
     public gameOutDate: string;
     public categories: any[];
     public gameSinopsis: string;
-    public gameImage: any;
+    public gameImage: File;
     public userId: string;
+    public load: boolean;
 
     constructor(
         private dataService: DataAplicationService,
@@ -38,6 +39,7 @@ export class AddGameComponent implements OnInit {
         this.title = 'Add new video-game';
         this.categoriesSelected = [];
         this.getStore();
+        this.load = false;
     }
 
     ngOnInit() {
@@ -52,13 +54,21 @@ export class AddGameComponent implements OnInit {
             this.adminService.getGame(this.gameId)
                 .pipe(
                     map(response => response['games']),
-                    finalize(() => this.createForm())
+                    finalize(() => {
+                        this.createForm();
+                        this.load = true;
+                    })
                 )
                 .subscribe(response => {
-                    //this.gameNameValue = response[0].name;
+                    this.gameNameValue = response[0].name;
+                    this.gameDuration = response[0].duration;
+                    this.gamePublicDirected = response[0].public_directed;
+                    this.gameOutDate = response[0].out_date;
+                    this.gameSinopsis = response[0].sinopsis;
                 });
         } else {
             this.createForm();
+            this.load = true;
         }
     }
 
@@ -94,7 +104,7 @@ export class AddGameComponent implements OnInit {
                 Validators.compose([Validators.required, Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[12]{1}[0-9]{3}$')])
             ],
             image: [
-                this.gameImage
+                this.gameImage, Validators.required
             ]
         });
     }
@@ -127,7 +137,7 @@ export class AddGameComponent implements OnInit {
                         const data = {
                             ...category,
                         };
-    
+
                         this.categories.push(data);
                     }
                 }
@@ -155,23 +165,41 @@ export class AddGameComponent implements OnInit {
         });
     }
 
+    takeImage(image) {
+        console.log(image);
+
+        this.gameImage = image;
+    }
+
     onSubmit(formGame) {
         if (this.validateSubmit()) {
-            const data = {
+            let data: any;
+            data = {
                 name: formGame.value.name,
                 sinopsis: formGame.value.sinopsis,
                 duration: formGame.value.duration,
                 public_directed: formGame.value.publicDirected,
                 out_date: formGame.value.outDate,
-                image: formGame.value.image,
                 categories: this.categoriesSelected,
                 user_id: this.userId
             };
-            console.log(data);
-            this.adminService.addGame(data).
+
+            if (this.gameId) {
+                data = {
+                    ...data,
+                    id: this.gameId
+                };
+            }
+
+            this.adminService.addGame(data, this.gameImage[0]).
                 subscribe(response => {
-                    this.dataService.createModal('success', 'Successfull', 'Game have been saved');
-                    this.formGame.reset();
+                    console.log(response);
+                    if (response['status'] !== 'error') {
+                        this.dataService.createModal('success', 'Successfull', 'Game have been saved');
+                        this.formGame.reset();
+                    } else {
+                        this.dataService.createModal('error', 'Sorry', 'The formulary is incorrent, please try again');
+                    }
                 });
         } else {
             this.dataService.createModal('error', 'Sorry', 'The formulary is incorrent, please try again');

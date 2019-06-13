@@ -15,12 +15,15 @@ export class AdminService {
         this.url = 'http://localhost/HiFind-Api/public/api/';
     }
 
-    addGame(game) {
+    addGame(game, image) {
         const json = JSON.stringify(game);
-        const params = 'json=' + json;
-        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        const params = new FormData();
+        params.append('json', json);
+        params.append('image', image);
+        //const params = 'json=' + json + 'image=' + image;
+        const headers = new HttpHeaders().set('Content-Type', 'application/form-data');
 
-        return this.http.post(this.url + 'games', params, { headers });
+        return this.http.post(this.url + 'games', params);
     }
 
     getAllGames() {
@@ -97,6 +100,14 @@ export class AdminService {
         return this.http.get(this.url + 'actors', { headers });
     }
 
+    deleteActor(data) {
+        const json = JSON.stringify(data);
+        const params = 'json=' + json;
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.post(this.url + 'delete/actor', params, { headers });
+    }
+
     addDirector(director) {
         const json = JSON.stringify(director);
         const params = 'json=' + json;
@@ -111,9 +122,25 @@ export class AdminService {
         return this.http.get(this.url + 'directors', { headers });
     }
 
+    deleteDirector(data) {
+        const json = JSON.stringify(data);
+        const params = 'json=' + json;
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.post(this.url + 'delete/director', params, { headers });
+    }
+
     getAllMovies() {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.http.get(this.url + 'movies', { headers });
+    }
+
+    deleteMovie(data) {
+        const json = JSON.stringify(data);
+        const params = 'json=' + json;
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.post(this.url + 'delete/movie', params, { headers });
     }
 }

@@ -35,6 +35,7 @@ export class AddActorComponent implements OnInit {
 
     ngOnInit() {
         this.takeParamsUrl();
+        this.getStore();
     }
 
     takeParamsUrl() {
@@ -105,6 +106,7 @@ export class AddActorComponent implements OnInit {
             birthday: formActor.value.actorBirthday,
             biography: formActor.value.biography,
             image: formActor.value.image,
+            user_id: this.userId
         };
         console.log(data);
         this.adminService.addActor(data).

@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 })
 export class MoviesPremiumComponent implements OnInit {
 
-    public movieData: any;
+    public data: any;
     public userId: string;
 
     constructor(
@@ -33,7 +33,7 @@ export class MoviesPremiumComponent implements OnInit {
             )
             .subscribe(response => {
                 console.log(response);
-                //this.movieData = response;
+                this.data = response;
             });
     }
 

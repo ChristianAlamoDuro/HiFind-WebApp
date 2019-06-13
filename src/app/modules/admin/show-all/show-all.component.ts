@@ -3,6 +3,7 @@ import { AdminService } from '@services/admin/admin.service';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { map, finalize } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-show-all',
@@ -13,20 +14,36 @@ export class ShowAllComponent implements OnInit, OnChanges {
     public data: any[];
     public typeToShow: string;
     public dataAplication;
+    public userId: string;
 
     constructor(
         private adminService: AdminService,
         private dataService: DataAplicationService,
         private activatedRoute: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private store: Store<any>
     ) {
         this.getDataAplication();
         this.getTypeToShow();
+        this.getStore();
     }
 
     ngOnInit() {
         this.loadType();
         this.detectedChangeRoute();
+    }
+
+    getStore() {
+        const self = this;
+
+        self.store.pipe(
+          map(value => {
+            return value.state['userData'];
+          })
+        )
+        .subscribe(response => {
+           self.userId = response.sub;
+        });
     }
 
     /**
@@ -42,8 +59,6 @@ export class ShowAllComponent implements OnInit, OnChanges {
                 })
             )
             .subscribe(response => {
-                console.log(response);
-
                 this.data = response;
             });
     }
@@ -78,6 +93,7 @@ export class ShowAllComponent implements OnInit, OnChanges {
                 map(response => response['games'])
             )
             .subscribe(response => {
+
                 this.data = response;
             });
     }
@@ -90,8 +106,7 @@ export class ShowAllComponent implements OnInit, OnChanges {
                 map(response => response['movies'])
             )
             .subscribe(response => {
-                console.log(response);
-                //this.data = response;
+                this.data = response;
             });
     }
 
@@ -100,11 +115,10 @@ export class ShowAllComponent implements OnInit, OnChanges {
 
         this.adminService.getAllActors()
             .pipe(
-                //map(response => response['ac'])
+                map(response => response['actors'])
             )
             .subscribe(response => {
-                console.log(response);
-                //this.data = response;
+                this.data = response;
             });
     }
 
@@ -113,11 +127,10 @@ export class ShowAllComponent implements OnInit, OnChanges {
 
         this.adminService.getAllDirectors()
             .pipe(
-                //map(response => response['ac'])
+                map(response => response['directors'])
             )
             .subscribe(response => {
-                console.log(response);
-                //this.data = response;
+                this.data = response;
             });
     }
 
@@ -177,8 +190,10 @@ export class ShowAllComponent implements OnInit, OnChanges {
     }
 
     deleteGame(id: string): void {
+        const self = this;
         const data = {
-            id
+            id,
+            user_id: self.userId
         };
 
         this.adminService.deleteGame(data)
@@ -194,6 +209,95 @@ export class ShowAllComponent implements OnInit, OnChanges {
             error => {
                 this.dataService.createModal('error', 'Upps sorry', 'the Game could not be deleted');
             });
+    }
+
+    deleteActor(id: string): void {
+        const self = this;
+        const data = {
+            id,
+            user_id: self.userId
+        };
+
+        this.adminService.deleteActor(data)
+            .pipe(
+                finalize(() => {
+                    this.data = [];
+                    this.getAllActors();
+                })
+            )
+            .subscribe(response => {
+                this.dataService.createModal('success', 'Actor delete', 'Actor has been deleted');
+            },
+            error => {
+                this.dataService.createModal('error', 'Upps sorry', 'The actor could not be deleted');
+            });
+    }
+
+    deleteDirector(id: string): void {
+        const self = this;
+        const data = {
+            id,
+            user_id: self.userId
+        };
+
+        this.adminService.deleteDirector(data)
+            .pipe(
+                finalize(() => {
+                    this.data = [];
+                    this.getAllDirectors();
+                })
+            )
+            .subscribe(response => {
+                this.dataService.createModal('success', 'Director delete', 'Director has been deleted');
+            },
+            error => {
+                this.dataService.createModal('error', 'Upps sorry', 'The director could not be deleted');
+            });
+    }
+
+    deleteMovie(id: string): void {
+        const self = this;
+        const data = {
+            id,
+            user_id: self.userId
+        };
+
+        this.adminService.deleteMovie(data)
+            .pipe(
+                finalize(() => {
+                    this.data = [];
+                    this.getAllMovies();
+                })
+            )
+            .subscribe(response => {
+                this.dataService.createModal('success', 'Movie delete', 'Movie has been deleted');
+            },
+            error => {
+                this.dataService.createModal('error', 'Upps sorry', 'The movie could not be deleted');
+            });
+    }
+
+
+    delete(type: string, id: string) {
+        switch (type) {
+            case 'category':
+                this.deleteCategory(id);
+                break;
+            case 'game':
+                this.deleteGame(id);
+                break;
+            case 'movie':
+                this.deleteMovie(id);
+                break;
+            case 'actor':
+                this.deleteActor(id);
+                break;
+            case 'director':
+                this.deleteDirector(id);
+                break;
+            default:
+                break;
+        }
     }
     ngOnChanges() {
         this.getTypeToShow();

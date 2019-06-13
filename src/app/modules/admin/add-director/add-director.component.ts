@@ -35,6 +35,7 @@ export class AddDirectorComponent implements OnInit {
 
     ngOnInit() {
         this.takeParamsUrl();
+        this.getStore();
     }
 
     takeParamsUrl() {
@@ -105,6 +106,7 @@ export class AddDirectorComponent implements OnInit {
             birthday: formDirector.value.directorBirthday,
             biography: formDirector.value.biography,
             image: formDirector.value.image,
+            user_id: this.userId
         };
         console.log(data);
         this.adminService.addDirector(data).
