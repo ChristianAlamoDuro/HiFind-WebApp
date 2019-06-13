@@ -20,8 +20,6 @@ export class AdminService {
         const params = new FormData();
         params.append('json', json);
         params.append('image', image);
-        //const params = 'json=' + json + 'image=' + image;
-        const headers = new HttpHeaders().set('Content-Type', 'application/form-data');
 
         return this.http.post(this.url + 'games', params);
     }
@@ -86,12 +84,13 @@ export class AdminService {
         return this.http.post(this.url + 'delete/category', params, { headers });
     }
 
-    addActor(actor) {
+    addActor(actor, image) {
         const json = JSON.stringify(actor);
-        const params = 'json=' + json;
-        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        const params = new FormData();
+        params.append('json', json);
+        params.append('image', image);
 
-        return this.http.post(this.url + 'actors', params, { headers });
+        return this.http.post(this.url + 'actors', params);
     }
 
     getAllActors() {
@@ -108,12 +107,13 @@ export class AdminService {
         return this.http.post(this.url + 'delete/actor', params, { headers });
     }
 
-    addDirector(director) {
+    addDirector(director, image) {
         const json = JSON.stringify(director);
-        const params = 'json=' + json;
-        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        const params = new FormData();
+        params.append('json', json);
+        params.append('image', image);
 
-        return this.http.post(this.url + 'directors', params, { headers });
+        return this.http.post(this.url + 'directors', params);
     }
 
     getAllDirectors() {

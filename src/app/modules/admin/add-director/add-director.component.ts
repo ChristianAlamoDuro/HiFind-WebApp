@@ -21,7 +21,7 @@ export class AddDirectorComponent implements OnInit {
     public surname: string;
     public birthday: string;
     public biography: string;
-    public image: any;
+    public directorImage: any;
 
     constructor(
         private store: Store<any>,
@@ -53,6 +53,10 @@ export class AddDirectorComponent implements OnInit {
         } else {
             this.createForm();
         }
+    }
+
+    takeImage(image) {
+        this.directorImage = image;
     }
 
     getStore() {
@@ -93,7 +97,8 @@ export class AddDirectorComponent implements OnInit {
                 Validators.compose([Validators.required])
             ],
             image: [
-                this.image
+                this.directorImage,
+                Validators.required
             ]
         });
     }
@@ -109,7 +114,7 @@ export class AddDirectorComponent implements OnInit {
             user_id: this.userId
         };
         console.log(data);
-        this.adminService.addDirector(data).
+        this.adminService.addDirector(data, this.directorImage[0]).
             subscribe(response => {
                 console.log(response);
 

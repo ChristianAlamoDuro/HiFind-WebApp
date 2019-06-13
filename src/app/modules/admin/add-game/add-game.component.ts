@@ -17,6 +17,7 @@ export class AddGameComponent implements OnInit {
     public dataAplication: any;
     public title: string;
     public categoriesSelected: any[];
+    public gameCategories: any;
     public gameId: string;
     public gameNameValue: string;
     public gameDuration: string;
@@ -43,8 +44,10 @@ export class AddGameComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.takeParamsUrl();
         this.getCategoryType();
+        this.takeParamsUrl();
+        console.log(this.categories);
+        ;
     }
 
     takeParamsUrl() {
@@ -65,6 +68,9 @@ export class AddGameComponent implements OnInit {
                     this.gamePublicDirected = response[0].public_directed;
                     this.gameOutDate = response[0].out_date;
                     this.gameSinopsis = response[0].sinopsis;
+                    this.categoriesSelected = response[0].categories;
+                    this.generateCategoryId();
+                    this.generateCategoryOnForm();
                 });
         } else {
             this.createForm();
@@ -150,6 +156,27 @@ export class AddGameComponent implements OnInit {
         } else {
             this.categoriesSelected.push(categoryId.target.value);
         }
+        this.generateCategoryOnForm();
+    }
+
+    generateCategoryId() {
+        let idCategorie = [];
+        for (const categories of this.categoriesSelected) {
+            let aux = [];
+            aux.push(this.categories.find(item => item.name ===  categories));
+            idCategorie.push(aux[0].id);
+        }
+        this.categoriesSelected = idCategorie;
+    }
+
+    generateCategoryOnForm(): void{
+        let namecategorie = [];
+        for (const categories of this.categoriesSelected) {
+            let aux = [];
+            aux.push(this.categories.find(item => item.id ===  +categories));
+            namecategorie.push(aux[0].name);
+        }
+        this.gameCategories = namecategorie.join(',');
     }
 
     getStore() {
@@ -166,8 +193,6 @@ export class AddGameComponent implements OnInit {
     }
 
     takeImage(image) {
-        console.log(image);
-
         this.gameImage = image;
     }
 
@@ -193,7 +218,6 @@ export class AddGameComponent implements OnInit {
 
             this.adminService.addGame(data, this.gameImage[0]).
                 subscribe(response => {
-                    console.log(response);
                     if (response['status'] !== 'error') {
                         this.dataService.createModal('success', 'Successfull', 'Game have been saved');
                         this.formGame.reset();

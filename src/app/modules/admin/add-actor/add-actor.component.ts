@@ -21,7 +21,7 @@ export class AddActorComponent implements OnInit {
     public surname: string;
     public birthday: string;
     public biography: string;
-    public image: any;
+    public actorImage: any;
 
     constructor(
         private store: Store<any>,
@@ -93,9 +93,14 @@ export class AddActorComponent implements OnInit {
                 Validators.compose([Validators.required])
             ],
             image: [
-                this.image
+                this.actorImage,
+                Validators.required
             ]
         });
+    }
+
+    takeImage(image) {
+        this.actorImage = image;
     }
 
     onSubmit(formActor) {
@@ -108,8 +113,10 @@ export class AddActorComponent implements OnInit {
             image: formActor.value.image,
             user_id: this.userId
         };
+
+
         console.log(data);
-        this.adminService.addActor(data).
+        this.adminService.addActor(data, this.actorImage[0]).
             subscribe(response => {
                 console.log(response);
 
