@@ -99,6 +99,12 @@ export class AdminService {
         return this.http.get(this.url + 'actors', { headers });
     }
 
+    getActor(id) {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.get(this.url + 'actors/' + id, { headers });
+    }
+
     deleteActor(data) {
         const json = JSON.stringify(data);
         const params = 'json=' + json;
@@ -122,6 +128,12 @@ export class AdminService {
         return this.http.get(this.url + 'directors', { headers });
     }
 
+    getDirector(id) {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.get(this.url + 'directors/' + id, { headers });
+    }
+
     deleteDirector(data) {
         const json = JSON.stringify(data);
         const params = 'json=' + json;
@@ -130,10 +142,25 @@ export class AdminService {
         return this.http.post(this.url + 'delete/director', params, { headers });
     }
 
+    addMovie(movie, image) {
+        const json = JSON.stringify(movie);
+        const params = new FormData();
+        params.append('json', json);
+        params.append('image', image);
+
+        return this.http.post(this.url + 'movies', params);
+    }
+
     getAllMovies() {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.http.get(this.url + 'movies', { headers });
+    }
+
+    getMovie(id) {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.get(this.url + 'movies/' + id, { headers });
     }
 
     deleteMovie(data) {

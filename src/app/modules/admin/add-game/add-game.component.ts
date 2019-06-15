@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '@core/services/admin/admin.service';
 import { map, finalize } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
@@ -39,15 +39,14 @@ export class AddGameComponent implements OnInit {
         this.getDataAplication();
         this.title = 'Add new video-game';
         this.categoriesSelected = [];
+        this.gameCategories = [];
         this.getStore();
         this.load = false;
+        this.getCategoryType();
     }
 
     ngOnInit() {
-        this.getCategoryType();
         this.takeParamsUrl();
-        console.log(this.categories);
-        ;
     }
 
     takeParamsUrl() {
@@ -75,6 +74,15 @@ export class AddGameComponent implements OnInit {
         } else {
             this.createForm();
             this.load = true;
+        }
+    }
+
+    checkCheckbox() {
+        if (this.gameCategories.length >= 1) {
+            const categories = this.gameCategories.split(',');
+            for (const category of categories) {
+                document.getElementById(category)['checked'] = true;
+            }
         }
     }
 
@@ -169,14 +177,14 @@ export class AddGameComponent implements OnInit {
         this.categoriesSelected = idCategorie;
     }
 
-    generateCategoryOnForm(): void{
-        let namecategorie = [];
+    generateCategoryOnForm(): void {
+        let nameCategory = [];
         for (const categories of this.categoriesSelected) {
-            let aux = [];
+            const aux = [];
             aux.push(this.categories.find(item => item.id ===  +categories));
-            namecategorie.push(aux[0].name);
+            nameCategory.push(aux[0].name);
         }
-        this.gameCategories = namecategorie.join(',');
+        this.gameCategories = nameCategory.join(',');
     }
 
     getStore() {
@@ -197,7 +205,7 @@ export class AddGameComponent implements OnInit {
     }
 
     onSubmit(formGame) {
-        if (this.validateSubmit()) {
+        if (this.formGame.valid && this.categoriesSelected.length >= 1) {
             let data: any;
             data = {
                 name: formGame.value.name,
@@ -229,17 +237,6 @@ export class AddGameComponent implements OnInit {
             this.dataService.createModal('error', 'Sorry', 'The formulary is incorrent, please try again');
         }
 
-    }
-    validateSubmit() {
-        let valid;
-
-        if (this.formGame.valid && this.categoriesSelected.length >= 1) {
-            valid = true;
-        } else {
-            valid = false;
-        }
-
-        return valid;
     }
 
 }

@@ -22,6 +22,7 @@ export class AddDirectorComponent implements OnInit {
     public birthday: string;
     public biography: string;
     public directorImage: any;
+    public load = false;
 
     constructor(
         private store: Store<any>,
@@ -42,16 +43,20 @@ export class AddDirectorComponent implements OnInit {
         this.directorId = this.route.snapshot.paramMap.get('id');
 
         if (this.directorId) {
-            this.adminService.getGame(this.directorId)
+            this.adminService.getDirector(this.directorId)
                 .pipe(
-                    map(response => response['directors']),
                     finalize(() => this.createForm())
                 )
                 .subscribe(response => {
-                    // FILM DATA
+                    this.name = response[0].name;
+                    this.surname = response[0].surname;
+                    this.biography = response[0].biography;
+                    this.birthday = response[0].birthday;
+                    this.load = true;
                 });
         } else {
             this.createForm();
+            this.load = true;
         }
     }
 
@@ -105,7 +110,8 @@ export class AddDirectorComponent implements OnInit {
 
     onSubmit(formDirector) {
 
-        const data = {
+        let data: any;
+        data = {
             name: formDirector.value.directorName,
             surname: formDirector.value.directorSurname,
             birthday: formDirector.value.directorBirthday,
@@ -113,11 +119,16 @@ export class AddDirectorComponent implements OnInit {
             image: formDirector.value.image,
             user_id: this.userId
         };
+
+        if (this.directorId) {
+            data = {
+                ... data,
+                id: this.directorId
+            };
+        }
         console.log(data);
         this.adminService.addDirector(data, this.directorImage[0]).
             subscribe(response => {
-                console.log(response);
-
                 this.dataService.createModal('success', 'Successfull', 'Director have been saved');
                 this.formGroup.reset();
             });

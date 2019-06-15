@@ -22,6 +22,7 @@ export class AddActorComponent implements OnInit {
     public birthday: string;
     public biography: string;
     public actorImage: any;
+    public load = false;
 
     constructor(
         private store: Store<any>,
@@ -31,10 +32,10 @@ export class AddActorComponent implements OnInit {
         private route: ActivatedRoute
     ) {
         this.title = 'Add actor';
+        this.takeParamsUrl();
     }
 
     ngOnInit() {
-        this.takeParamsUrl();
         this.getStore();
     }
 
@@ -42,17 +43,24 @@ export class AddActorComponent implements OnInit {
         this.actorId = this.route.snapshot.paramMap.get('id');
 
         if (this.actorId) {
-            this.adminService.getGame(this.actorId)
+            this.adminService.getActor(this.actorId)
                 .pipe(
-                    map(response => response['actors']),
-                    finalize(() => this.createForm())
+                    finalize(() => {
+                        this.createForm();
+                    })
                 )
                 .subscribe(response => {
-                    // FILM DATA
+                    this.name = response[0].name;
+                    this.surname = response[0].surname;
+                    this.biography = response[0].biography;
+                    this.birthday = response[0].birthday;
+                    this.load = true;
                 });
         } else {
             this.createForm();
+            this.load = true;
         }
+
     }
 
     getStore() {
@@ -104,8 +112,8 @@ export class AddActorComponent implements OnInit {
     }
 
     onSubmit(formActor) {
-
-        const data = {
+        let data: any;
+        data = {
             name: formActor.value.actorName,
             surname: formActor.value.actorSurname,
             birthday: formActor.value.actorBirthday,
@@ -114,8 +122,13 @@ export class AddActorComponent implements OnInit {
             user_id: this.userId
         };
 
+        if (this.actorId) {
+            data = {
+                ... data,
+                id: this.actorId
+            };
+        }
 
-        console.log(data);
         this.adminService.addActor(data, this.actorImage[0]).
             subscribe(response => {
                 console.log(response);
