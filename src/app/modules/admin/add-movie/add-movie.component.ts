@@ -17,8 +17,8 @@ export class AddMovieComponent implements OnInit {
     public dataAplication: any;
     public title = 'Add Movie';
     public categoriesSelected: any[];
-    public directorsSelected: any [];
-    public actorsSelected: any [];
+    public directorsSelected: any[];
+    public actorsSelected: any[];
     public movieCategories: any;
     public movieActors: any;
     public movieDirectors: any;
@@ -43,7 +43,6 @@ export class AddMovieComponent implements OnInit {
         private dataService: DataAplicationService,
         private route: ActivatedRoute,
     ) {
-        this.takeParamsUrl();
         this.getStore();
         this.getCategoryType();
         this.getActors();
@@ -51,6 +50,7 @@ export class AddMovieComponent implements OnInit {
         this.categoriesSelected = [];
         this.directorsSelected = [];
         this.actorsSelected = [];
+        this.takeParamsUrl();
     }
 
     ngOnInit() {
@@ -70,20 +70,58 @@ export class AddMovieComponent implements OnInit {
                     })
                 )
                 .subscribe(response => {
+                    console.log(response);
                     this.movieNameValue = response[0].title;
-                    this.movieFillProducer = response[0].fill_producer;
+                    this.movieFillProducer = response[0].film_producer;
                     this.movieDuration = response[0].duration;
                     this.moviePublicDirected = response[0].public_directed;
                     this.movieOutDate = response[0].out_date;
                     this.movieSinopsis = response[0].sinopsis;
                     this.categoriesSelected = response[0].categories;
-                    // this.generateCategoryId();
-                    // this.generateCategoryOnForm();
+                    this.actorsSelected = response[0].actors;
+                    this.directorsSelected = response[0].directors;
+                    this.generateCategoryId();
+                    this.generateCategoryOnForm();
                 });
         } else {
             this.createForm();
             this.load = true;
         }
+    }
+    generateCategoryId() {
+        let idCategorie = [];
+        console.log(this.categoriesSelected);
+        for (const categories of this.categoriesSelected) {
+            let aux = [];
+            console.log(this.categories);
+            aux.push(this.categories.find(item => item.name === categories));
+            idCategorie.push(aux[0].id);
+        }
+
+        this.categoriesSelected = idCategorie;
+        this.generateCategoryOnForm();
+
+        // actors
+        let idActor = [];
+        for (const categories of this.actorsSelected) {
+            let aux = [];
+            aux.push(this.actors.find(item => item.name === categories));
+            idActor.push(aux[0].id);
+        }
+
+        this.actorsSelected = idActor;
+        this.generateActorOnForm();
+
+        // directors
+        let idDirector = [];
+        for (const categories of this.directorsSelected) {
+            let aux = [];
+            aux.push(this.directors.find(item => item.name === categories));
+            idDirector.push(aux[0].id);
+        }
+
+        this.directorsSelected = idDirector;
+        this.generateDirectorOnForm();
     }
 
     takeImage(image) {
@@ -133,13 +171,12 @@ export class AddMovieComponent implements OnInit {
                 break;
             case 'director':
                 check = this.movieDirectors;
-                break;                
+                break;
         }
         console.log(check);
 
-        const categories = this.movieCategories.split(',');
-        for (const category of categories) {
-            document.getElementById(category)['checked'] = true;
+        for (const itemCheck of check) {
+             document.getElementById(itemCheck)['checked'] = true;
         }
     }
 
@@ -147,13 +184,13 @@ export class AddMovieComponent implements OnInit {
         const self = this;
 
         self.store.pipe(
-          map(value => {
-            return value.state['userData'];
-          })
+            map(value => {
+                return value.state['userData'];
+            })
         )
-        .subscribe(response => {
-           self.userId = response.sub;
-        });
+            .subscribe(response => {
+                self.userId = response.sub;
+            });
     }
 
     getCategoryType() {
@@ -266,7 +303,7 @@ export class AddMovieComponent implements OnInit {
         let namecategorie = [];
         for (const categories of this.categoriesSelected) {
             let aux = [];
-            aux.push(this.categories.find(item => item.id ===  +categories));
+            aux.push(this.categories.find(item => item.id === +categories));
             namecategorie.push(aux[0].name);
         }
         this.movieCategories = namecategorie.join(',');
@@ -276,17 +313,18 @@ export class AddMovieComponent implements OnInit {
         let nameActor = [];
         for (const categories of this.actorsSelected) {
             let aux = [];
-            aux.push(this.actors.find(item => item.id ===  +categories));
+            aux.push(this.actors.find(item => item.id === +categories));
             nameActor.push(aux[0].name);
         }
         this.movieActors = nameActor.join(',');
+
     }
 
     generateDirectorOnForm(): void {
         let nameDirector = [];
         for (const categories of this.directorsSelected) {
             let aux = [];
-            aux.push(this.directors.find(item => item.id ===  +categories));
+            aux.push(this.directors.find(item => item.id === +categories));
             nameDirector.push(aux[0].name);
         }
         this.movieDirectors = nameDirector.join(',');
@@ -294,7 +332,7 @@ export class AddMovieComponent implements OnInit {
 
     onSubmit(form) {
         if (this.formMovie.valid &&
-            this.categoriesSelected.length >= 1 && 
+            this.categoriesSelected.length >= 1 &&
             this.directorsSelected.length >= 1 && this.actorsSelected.length >= 1
         ) {
             let data: any;
