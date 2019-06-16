@@ -81,5 +81,7 @@ export class SideNavBarComponent implements OnInit {
                     }
                 }
             });
+            console.log(this.categoriesGames);
+            
     }
 }

@@ -1,4 +1,39 @@
-<nav class="nav flex-column nav-lateral mt-3" *ngIf="dataAplication">
+<nav class="navbar navbar-expand-lg navbar-light nav-lateral">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuLateral"
+        aria-controls="menuLateral" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> Filters
+    </button>
+
+    <div class="collapse navbar-collapse" id="menuLateral" *ngIf="dataAplication">
+        <div class="navbar-nav flex-column mr-auto">
+            <div *ngIf="movies === true || games === false ">
+                <h4 class="text-muted">
+                    {{dataAplication.Generic.movies}}
+                </h4>
+                <hr>
+                <h4 class="text-muted">
+                    {{dataAplication.Generic.categories}}
+                </h4>
+                <div *ngFor="let category of categoryMovies">
+                    <a routerLink="/{{ url }}/{{ category }}" class="nav-link">{{category}}</a>
+                </div>
+            </div>
+            <div *ngIf="movies === false || games === true">
+                <h4 class="text-muted mt-3">
+                    {{dataAplication.Generic.videogames}}
+                </h4>
+                <hr>
+                <h4 class="text-muted">
+                    {{dataAplication.Generic.categories}}
+                </h4>
+                <div *ngFor="let category of categoriesGames">
+                    <a routerLink="/{{ url }}/{{ category }}" class="nav-link">{{category}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- <nav class="nav flex-column nav-lateral mt-3" *ngIf="dataAplication">
   <div *ngIf="movies === true || games === false ">
     <h4 class="text-muted">
       {{dataAplication.Generic.movies}}
@@ -23,4 +58,4 @@
       <a routerLink="/{{ url }}/{{ category }}" class="nav-link">{{category}}</a>
     </div>
   </div>
-</nav>
+</nav> -->
