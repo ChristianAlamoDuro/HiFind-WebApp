@@ -80,8 +80,8 @@ export class SideNavBarComponent implements OnInit {
                         this.categoryMovies.push(category.name);
                     }
                 }
+                this.categoriesGames = this.categoriesGames.sort();
+                this.categoryMovies = this.categoryMovies.sort();
             });
-            console.log(this.categoriesGames);
-            
     }
 }

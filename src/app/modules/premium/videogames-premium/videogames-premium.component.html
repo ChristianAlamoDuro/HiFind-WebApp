@@ -3,7 +3,7 @@
     <div class="ml-3 col-12 col-md-2">
           <app-side-navbar></app-side-navbar>
     </div>
-    <div class="col-12 col-md-9 main-color">
+    <div class="col-12 col-lg-9 main-color" *ngIf="data">
       <section class="row ml-sm-auto mr-sm-auto d-flex justify-content-center">
         <!--games -->
         <article *ngFor="let game of data" class="col-md-6 col-lg-4 col-xl-4 mt-5 card-games">
@@ -26,6 +26,10 @@
         </article>
       </section>
     </div>
+    <div class="col-12 col-md-9 text-center main-color" *ngIf="!data">
+        <h2>Sorry this category don't have games</h2>
+        <img src="../../../../assets/img/not-found.gif" class="img-fluid" alt="not-found" >
+      </div>
   </div>
 </div>
 <div class="modal fade game-modal-lg" id="modal-show-game">

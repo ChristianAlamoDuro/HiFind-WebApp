@@ -163,6 +163,13 @@ export class AdminService {
         return this.http.get(this.url + 'movies/' + id, { headers });
     }
 
+    getMovieForType(type: string, category: string) {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.get(this.url + type + '/' + category, { headers });
+    }
+
+
     deleteMovie(data) {
         const json = JSON.stringify(data);
         const params = 'json=' + json;

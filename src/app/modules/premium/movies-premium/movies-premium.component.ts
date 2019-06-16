@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '@services/admin/admin.service';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'app-movies-premium',
@@ -24,16 +25,38 @@ export class MoviesPremiumComponent implements OnInit {
     public marks: string [];
     public movieId: string;
     public filmProducer: string;
+    public categoryType: any;
 
     constructor(
         private adminService: AdminService,
-        private store: Store<any>
+        private store: Store<any>,
+        private route: ActivatedRoute,
+        private router: Router
     ) {
         this.getStore();
     }
 
     ngOnInit() {
-        this.getAllMovies();
+        this.initializeData();
+        this.detectedChangeRoute();
+    }
+
+    initializeData() {
+        this.categoryType = this.route.snapshot.paramMap.get('type');
+        console.log('aaaaa');
+        if (this.categoryType) {
+            this.getCategoriesMovie(this.categoryType);
+        } else {
+            this.getAllMovies();
+        }
+    }
+
+    detectedChangeRoute(): void {
+        this.router.events.forEach((event) => {
+            if (event instanceof NavigationEnd) {
+                this.initializeData();
+            }
+        });
     }
 
     getAllMovies() {
@@ -42,6 +65,17 @@ export class MoviesPremiumComponent implements OnInit {
         this.adminService.getAllMovies()
             .pipe(
                 map(response => response['movies'])
+            )
+            .subscribe(response => {
+                console.log(response);
+                this.data = response;
+            });
+    }
+
+    getCategoriesMovie(type) {
+        this.adminService.getMovieForType('category_movie', type)
+            .pipe(
+                map(data => data['movies'])
             )
             .subscribe(response => {
                 console.log(response);

@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="ml-3 col-12 col-md-2">
+    <div class="ml-3 col-12 col-lg-2">
       <app-side-navbar></app-side-navbar>
     </div>
-    <div class="col-12 col-md-9 main-color">
+    <div class="col-12 col-md-9 main-color" *ngIf="data">
       <section class="row ml-sm-auto mr-sm-auto d-flex justify-content-center">
         <!--games -->
         <article *ngFor="let movie of data" class="col-md-6 col-lg-4 col-xl-4 mt-5 px-auto">
@@ -24,6 +24,10 @@
           </div>
         </article>
       </section>
+    </div>
+    <div class="col-12 col-md-9 text-center mt-auto mb-auto main-color" *ngIf="!data">
+      <h2>Sorry this category don't have movies</h2>
+      <img src="../../../../assets/img/not-found.gif" class="img-fluid" alt="not-found" >
     </div>
   </div>
 </div>
