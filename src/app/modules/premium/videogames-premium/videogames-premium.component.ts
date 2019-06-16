@@ -98,7 +98,7 @@ export class VideogamesPremiumComponent implements OnInit {
         console.log(game);
 
         this.name = game.name;
-        this.categories = game.categories.join(',');
+        this.categories = game.categories.join(', ');
         this.outDate = game.out_date;
         this.publicDirected = game.public_directed;
         this.duration = game.duration;

@@ -64,9 +64,9 @@ export class MoviesPremiumComponent implements OnInit {
 
     takeInformation(movie) {
         this.title = movie.title;
-        this.categories = movie.categories.join(',');
-        this.actors = movie.actors.join(',');
-        this.directors = movie.directors.join(',');
+        this.categories = movie.categories.join(', ');
+        this.actors = movie.actors.join(', ');
+        this.directors = movie.directors.join(', ');
         this.outDate = movie.out_date;
         this.publicDirected = movie.public_directed;
         this.duration = movie.duration;
