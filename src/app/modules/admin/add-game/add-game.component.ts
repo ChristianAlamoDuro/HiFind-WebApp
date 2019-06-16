@@ -162,11 +162,14 @@ export class AddGameComponent implements OnInit {
     }
 
     constructCategory(categoryId) {
-        if (this.categoriesSelected.includes(categoryId.target.value)) {
-            this.categoriesSelected.splice(this.categoriesSelected.indexOf(categoryId.target.value), 1);
+        categoryId = parseInt(categoryId.target.value);
+
+        if (this.categoriesSelected.find(item => item === categoryId)) {
+            this.categoriesSelected.splice(this.categoriesSelected.indexOf(categoryId), 1);
         } else {
-            this.categoriesSelected.push(categoryId.target.value);
+            this.categoriesSelected.push(categoryId);
         }
+
         this.generateCategoryOnForm();
     }
 

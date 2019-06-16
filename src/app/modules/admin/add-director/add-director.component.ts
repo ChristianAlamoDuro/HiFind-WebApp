@@ -48,10 +48,11 @@ export class AddDirectorComponent implements OnInit {
                     finalize(() => this.createForm())
                 )
                 .subscribe(response => {
-                    this.name = response[0].name;
-                    this.surname = response[0].surname;
-                    this.biography = response[0].biography;
-                    this.birthday = response[0].birthday;
+                    console.log(response);
+                    this.name = response['name'];
+                    this.surname = response['surname'];
+                    this.biography = response['biography'];
+                    this.birthday = response['birthday'];
                     this.load = true;
                 });
         } else {

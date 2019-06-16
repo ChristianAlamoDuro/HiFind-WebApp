@@ -36,10 +36,10 @@ export class AdminService {
         return this.http.get(this.url + `games/${gameId}`, { headers });
     }
 
-    getGamesForType(type: string) {
+    getGamesForType(type: string, category: string) {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.get(this.url + 'special_category_games/' + type, { headers });
+        return this.http.get(this.url + type + '/' + category, { headers });
     }
 
     deleteGame(data) {

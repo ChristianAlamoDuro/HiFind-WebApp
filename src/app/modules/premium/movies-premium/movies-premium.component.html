@@ -1,27 +1,58 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="ml-3 col-2 shadow-lg side-navbar">
+    <div class="ml-3 col-2 side-navbar">
       <app-side-navbar></app-side-navbar>
     </div>
-    <div class="col-9">
-        <section class="row ml-sm-auto mr-sm-auto d-flex justify-content-center">
-          <!--games -->
-          <article *ngFor="let movie of data" class="col-md-6 col-lg-4 col-xl-4 mt-5 px-auto">
-              <div class="card shadow-lg animated fadeInLeft">
-                  <img class="img-fluid" src="http://localhost/HiFind-Api/{{movie.image}}" alt="Card image cap">
-                  <div class="card-body">
-                      <h5 class="card-title">{{movie.title}}</h5>
-                      <hr>
-                      <h6 class="card-subtitle mb-2 text-muted"> <small>{{movie.out_date}}</small></h6>
-                      <p class="card-text">{{movie.sinopsis}}
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-center align-items-end p-4">
-                      <button class="btn btn-primary" type="button">Show more</button>
-                  </div>
-              </div>
-          </article>
+    <div class="col-9 main-color">
+      <section class="row ml-sm-auto mr-sm-auto d-flex justify-content-center">
+        <!--games -->
+        <article *ngFor="let movie of data" class="col-md-6 col-lg-4 col-xl-4 mt-5 px-auto">
+          <div class="card shadow-lg animated fadeInLeft">
+            <img class="img-fluid" src="http://localhost/HiFind-Api/{{movie.image}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{movie.title}}</h5>
+              <hr>
+              <h6 class="card-subtitle mb-2 text-muted"> <small>{{movie.out_date}}</small></h6>
+              <p class="card-text">{{movie.sinopsis}}
+              </p>
+            </div>
+            <div class="d-flex justify-content-center align-items-end p-4">
+              <a href="#modal-show-movie" class="btn btn-primary" (click)="takeInformation(movie)"
+                data-toggle="modal">Show more
+              </a>
+            </div>
+          </div>
+        </article>
       </section>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade game-modal-lg" id="modal-show-movie">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="model-title">{{ title }}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <img src="http://localhost/HiFind-Api/{{image}}" alt="{{name}}" class="img-fluid">
+          </div>
+          <div class="col-12 col-md-6">
+            <hr class="form-aparece-movil ">
+            <span class="font-weight-bold">Title:</span> {{ title }} <br>
+            <span class="font-weight-bold">Out date:</span> {{ outDate }} <br>
+            <span class="font-weight-bold">Public directed:</span> +{{ publicDirected }} <br>
+            <span class="font-weight-bold">Directors:</span> {{ directors }} <br>
+            <span class="font-weight-bold">Actors:</span> {{ actors }} <br>
+            <span class="font-weight-bold">Categories:</span> {{ categories }} <br>
+            <span class="font-weight-bold">Duration:</span> {{ duration }} <br>
+            <span class="font-weight-bold">Sinopsis:</span> {{ sinopsis }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
