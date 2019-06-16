@@ -12,7 +12,7 @@ export class AdminService {
     constructor(
         private http: HttpClient
     ) {
-        this.url = 'http://localhost/HiFind-Api/public/api/';
+        this.url = 'http://localhost/tfc/HiFind-Api/server.php/api/';
     }
 
     addGame(game, image) {
