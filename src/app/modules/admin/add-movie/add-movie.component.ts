@@ -32,7 +32,7 @@ export class AddMovieComponent implements OnInit {
     public movieSinopsis: string;
     public categories: any[];
     public userId: string;
-    public load = true;
+    public load = false;
     public actors: any;
     public directors: any;
 
@@ -44,9 +44,6 @@ export class AddMovieComponent implements OnInit {
         private route: ActivatedRoute,
     ) {
         this.getStore();
-        this.getCategoryType();
-        this.getActors();
-        this.getDirectors();
         this.categoriesSelected = [];
         this.directorsSelected = [];
         this.actorsSelected = [];
@@ -54,7 +51,6 @@ export class AddMovieComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.createForm();
     }
 
     takeParamsUrl() {
@@ -63,11 +59,7 @@ export class AddMovieComponent implements OnInit {
         if (this.movieId) {
             this.adminService.getMovie(this.movieId)
                 .pipe(
-                    map(response => response['movies']),
-                    finalize(() => {
-                        this.createForm();
-                        this.load = true;
-                    })
+                    map(response => response['movies'])
                 )
                 .subscribe(response => {
                     console.log(response);
@@ -80,14 +72,21 @@ export class AddMovieComponent implements OnInit {
                     this.categoriesSelected = response[0].categories;
                     this.actorsSelected = response[0].actors;
                     this.directorsSelected = response[0].directors;
-                    this.generateCategoryId();
-                    this.generateCategoryOnForm();
+                    this.modifyMovie();
                 });
         } else {
+            this.getCategoryType();
+            this.getActors();
+            this.getDirectors();
             this.createForm();
             this.load = true;
         }
     }
+
+    modifyMovie() {
+        this.getCategoryType();
+    }
+
     generateCategoryId() {
         let idCategorie = [];
         console.log(this.categoriesSelected);
@@ -158,25 +157,23 @@ export class AddMovieComponent implements OnInit {
                 this.movieImage, Validators.required
             ]
         });
+        this.load = true;
     }
 
-    checkCheckbox(type) {
-        let check;
-        switch (type) {
-            case 'category':
-                check = this.movieCategories;
-                break;
-            case 'actor':
-                check = this.movieActors;
-                break;
-            case 'director':
-                check = this.movieDirectors;
-                break;
+    checkCheckbox() {
+        for (const id of this.actorsSelected) {
+            const idData = 'A-' + id;
+            document.getElementById(idData)['checked'] = true;
         }
-        console.log(check);
 
-        for (const itemCheck of check) {
-             document.getElementById(itemCheck)['checked'] = true;
+        for (const id of this.directorsSelected) {
+            const idData = 'D-' + id;
+            document.getElementById(idData)['checked'] = true;
+        }
+
+        for (const id of this.categoriesSelected) {
+            const idData = 'C-' + id;
+            document.getElementById(idData)['checked'] = true;
         }
     }
 
@@ -197,7 +194,12 @@ export class AddMovieComponent implements OnInit {
         this.categories = [];
         this.adminService.getCategory('is_movie')
             .pipe(
-                map(data => data['category'])
+                map(data => data['category']),
+                finalize(() => {
+                    if (this.movieId) {
+                        this.getActors();
+                    }
+                })
             )
             .subscribe(response => {
                 if (response) {
@@ -232,7 +234,12 @@ export class AddMovieComponent implements OnInit {
         this.actors = [];
         this.adminService.getAllActors()
             .pipe(
-                map(data => data['actors'])
+                map(data => data['actors']),
+                finalize(() => {
+                    if (this.movieId) {
+                        this.getDirectors();
+                    }
+                })
             )
             .subscribe(response => {
                 if (response) {
@@ -254,7 +261,14 @@ export class AddMovieComponent implements OnInit {
         this.directors = [];
         this.adminService.getAllDirectors()
             .pipe(
-                map(data => data['directors'])
+                map(data => data['directors']),
+                finalize(() => {
+                    if (this.movieId) {
+                        this.generateCategoryId();
+                        this.createForm();
+                        console.log('fin');
+                    }
+                })
             )
             .subscribe(response => {
                 if (response) {
@@ -273,29 +287,37 @@ export class AddMovieComponent implements OnInit {
     }
 
     constructCategory(categoryId) {
-        if (this.categoriesSelected.includes(categoryId.target.value)) {
-            this.categoriesSelected.splice(this.categoriesSelected.indexOf(categoryId.target.value), 1);
+        categoryId = parseInt(categoryId.target.value);
+
+        if (this.categoriesSelected.find(item => item === categoryId)) {
+            this.categoriesSelected.splice(this.categoriesSelected.indexOf(categoryId), 1);
         } else {
-            this.categoriesSelected.push(categoryId.target.value);
+            this.categoriesSelected.push(categoryId);
         }
         this.generateCategoryOnForm();
     }
 
     constructDirector(directorId) {
-        if (this.directorsSelected.includes(directorId.target.value)) {
-            this.directorsSelected.splice(this.directorsSelected.indexOf(directorId.target.value), 1);
+        directorId = parseInt(directorId.target.value);
+
+        if (this.directorsSelected.find(item => item === directorId)) {
+            this.directorsSelected.splice(this.directorsSelected.indexOf(directorId), 1);
         } else {
-            this.directorsSelected.push(directorId.target.value);
+            this.directorsSelected.push(directorId);
         }
+
         this.generateDirectorOnForm();
     }
 
-    constructActor(directorId) {
-        if (this.actorsSelected.includes(directorId.target.value)) {
-            this.actorsSelected.splice(this.actorsSelected.indexOf(directorId.target.value), 1);
+    constructActor(actorId) {
+        actorId = parseInt(actorId.target.value);
+
+        if (this.actorsSelected.find(item => item === actorId)) {
+            this.actorsSelected.splice(this.actorsSelected.indexOf(actorId), 1);
         } else {
-            this.actorsSelected.push(directorId.target.value);
+            this.actorsSelected.push(actorId);
         }
+
         this.generateActorOnForm();
     }
 
@@ -310,6 +332,7 @@ export class AddMovieComponent implements OnInit {
     }
 
     generateActorOnForm(): void {
+        console.log('llamada');
         let nameActor = [];
         for (const categories of this.actorsSelected) {
             let aux = [];
