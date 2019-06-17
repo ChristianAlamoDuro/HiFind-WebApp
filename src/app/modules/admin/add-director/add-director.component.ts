@@ -84,19 +84,19 @@ export class AddDirectorComponent implements OnInit {
                 this.name,
                 Validators.compose([
                     Validators.required,
-                    Validators.pattern('^[a-zA-Z]{1}[a-zA-Z ]*[a-zA-Z]$')
+                    Validators.pattern('^[a-zA-ZZÁÉÍÓÚ]+(([ ][a-zA-ZÁÉÍÓÚáéíúóÑñ ])?[a-zA-ZÁÉÍÓÚáéíúóÑñ]*)*$')
                 ])
             ],
             directorSurname: [
                 this.surname,
                 Validators.compose([
                     Validators.required,
-                    Validators.pattern('^[a-zA-Z]{1}[a-zA-Z ]*[a-zA-Z]$')
+                    Validators.pattern('^[a-zA-ZZÁÉÍÓÚ]+(([ ][a-zA-ZÁÉÍÓÚáéíúóÑñ ])?[a-zA-ZÁÉÍÓÚáéíúóÑñ]*)*$')
                 ])
             ],
             directorBirthday: [
                 this.birthday,
-                Validators.compose([Validators.required, Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[12]{1}[0-9]{3}$')])
+                Validators.compose([Validators.required, Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-2]{1}/[12]{1}[0-9]{3}$')])
             ],
             biography: [
                 this.biography,

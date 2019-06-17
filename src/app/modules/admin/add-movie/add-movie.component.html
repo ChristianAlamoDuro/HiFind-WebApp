@@ -6,26 +6,26 @@
             <form [formGroup]="formMovie" (ngSubmit)="onSubmit(formMovie)" enctype="multipart/form-data">
                 <div class="form-group mt-2">
                     <input type="text" placeholder="Name" class="form-control col-10 col-lg-6" formControlName="name"
-                        name="name"> <br>
+                        name="name" title="Movie name"> <br>
                 </div>
 
                 <div class="form-group">
                     <input type="text" placeholder="Film producer" class="form-control col-10 col-lg-6" formControlName="filmProducer"
-                        name="filmProducer"> <br>
+                        name="filmProducer" title="Movie film producer"> <br>
                 </div>
 
                 <div class="form-group">
                     <input type="text" placeholder="Duration" class="form-control col-10 col-lg-6"
-                        formControlName="duration" name="duration"> <br>
+                        formControlName="duration" name="duration" title="Movie duration"> <br>
                 </div>
 
                 <div class="form-group">
                     <input type="number" placeholder="Public directed" class="form-control col-10 col-lg-6"
-                        formControlName="publicDirected" name="publicDirected"> <br>
+                        formControlName="publicDirected" name="publicDirected" title="Movie public directed"> <br>
                 </div>
                 <div class="form-group">
                     <input type="text" placeholder="Out date" class="form-control col-10 col-lg-6"
-                        formControlName="outDate" name="outDate"> <br>
+                        formControlName="outDate" name="outDate" title="Movie out date"> <br>
                 </div>
 
                 <!--Categories-->

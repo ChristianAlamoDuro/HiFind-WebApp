@@ -5,15 +5,19 @@
             <h2 class="mt-4">{{ title }}</h2>
             <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup)">
                 <div class="form-group">
-                    <input type="text" class="form-control col-6" placeholder="Name" formControlName="actorName" name="actorName"> <br>
+                    <input type="text" class="form-control col-6" placeholder="Name" formControlName="actorName" name="actorName"
+                    title="Actor name"
+                    > <br>
                 </div>
 
                 <div class="form-group">
-                        <input type="text" class="form-control col-6" placeholder="Surname" formControlName="actorSurname" name="actorName"> <br>
+                        <input type="text" class="form-control col-6" placeholder="Surname" formControlName="actorSurname" name="actorSurname"
+                        title="Actor surname"> <br>
                 </div>
 
                 <div class="form-group">
-                        <input type="text" class="form-control col-6" placeholder="Birthday" formControlName="actorBirthday" name="actorBirthday"> <br>
+                        <input type="text" class="form-control col-6" placeholder="Birthday" formControlName="actorBirthday" name="actorBirthday"
+                        title="Actor birthday"> <br>
                 </div>
 
                 <div class="form-group">
@@ -21,7 +25,8 @@
                 </div>
 
                 <div class="form-group">
-                        <input type="file" (change)="takeImage($event.target.files)" class="form-control-file" formControlName="image" name="image"> <br>
+                        <input type="file" (change)="takeImage($event.target.files)" class="form-control-file" formControlName="image" name="image"
+                        title="Actor Image"> <br>
                 </div>
 
                 <div class="text-center col-6">

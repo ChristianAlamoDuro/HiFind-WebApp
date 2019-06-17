@@ -43,13 +43,13 @@ export class AddCategoryComponent implements OnInit {
         const self = this;
 
         self.store.pipe(
-          map(value => {
-            return value.state['userData'];
-          })
+            map(value => {
+                return value.state['userData'];
+            })
         )
-        .subscribe(response => {
-           self.userId = response.sub;
-        });
+            .subscribe(response => {
+                self.userId = response.sub;
+            });
     }
 
     takeParamsUrl() {
@@ -84,8 +84,7 @@ export class AddCategoryComponent implements OnInit {
             categoryName: [
                 this.categoryNameValue,
                 Validators.compose([
-                    Validators.required,
-                    Validators.pattern('^[a-zA-Z]{1}[a-zA-Z ]*[a-zA-Z]$')
+                    Validators.required
                 ])
             ],
             categoryType: [
@@ -112,7 +111,7 @@ export class AddCategoryComponent implements OnInit {
             };
         }
         console.log(data);
-        
+
         this.adminService.addCategory(data).subscribe(
             response => {
                 console.log(response);

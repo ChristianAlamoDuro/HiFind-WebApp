@@ -5,18 +5,22 @@
             <h2 class="mt-4">{{ title }}</h2>
             <form [formGroup]="formGame" (ngSubmit)="onSubmit(formGame)" enctype="multipart/form-data">
                 <div class="form-group mt-2">
-                    <input type="text" placeholder="Name" class="form-control col-10 col-lg-6" formControlName="name" name="name"> <br>
+                    <input type="text" placeholder="Name" class="form-control col-10 col-lg-6" formControlName="name" name="name"
+                    title="Game name"> <br>
                 </div>
                 
                 <div class="form-group">
-                    <input type="text" placeholder="Duration" class="form-control col-10 col-lg-6" formControlName="duration" name="duration"> <br>
+                    <input type="text" placeholder="Duration" class="form-control col-10 col-lg-6" formControlName="duration" name="duration"
+                    title="Game duration"> <br>
                 </div>
 
                 <div class="form-group">
-                    <input type="number" placeholder="Public directed" class="form-control col-10 col-lg-6" formControlName="publicDirected" name="publicDirected"> <br>
+                    <input type="number" placeholder="Public directed" class="form-control col-10 col-lg-6" formControlName="publicDirected" name="publicDirected"
+                    title="Game public directed"> <br>
                 </div>
                 <div class="form-group">
-                        <input type="text" placeholder="Out date" class="form-control col-10 col-lg-6" formControlName="outDate" name="outDate"> <br>
+                        <input type="text" placeholder="Out date" class="form-control col-10 col-lg-6" formControlName="outDate" name="outDate"
+                        title="Game outDate"> <br>
                 </div>
 
                 <!--Categories-->
