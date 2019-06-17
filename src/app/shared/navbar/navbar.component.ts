@@ -35,8 +35,11 @@ export class NavbarComponent implements OnInit {
   }
   // Realizamos una peticion a la api para obterner la información de la busqueda introducida en la barra de busqueda
   searchMovie() {
-    this.router.navigate(['/searchResults/' + this.movieName]);
-    this.movieName = '';
+    if (this.movieName.trim() !== '') {
+      this.router.navigate(['/searchResults/' + this.movieName]);
+      this.movieName = '';
+    }
+
   }
 
   getContentData() {

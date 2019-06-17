@@ -378,7 +378,8 @@ export class AddMovieComponent implements OnInit {
                     id: this.movieId
                 };
             }
-
+            console.log(data);
+            
             this.adminService.addMovie(data, this.movieImage[0])
                 .subscribe(response => {
                     console.log(response);

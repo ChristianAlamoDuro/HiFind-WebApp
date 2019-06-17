@@ -3,6 +3,8 @@ import { AdminService } from '@services/admin/admin.service';
 import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { FormBuilder, Validators } from '@angular/forms';
+import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 
 @Component({
     selector: 'app-videogames-premium',
@@ -23,12 +25,16 @@ export class VideogamesPremiumComponent implements OnInit {
     public marks: any;
     public gameId: string;
     public duration: string;
+    public formMark: any;
+    public mark: any;
 
     constructor(
         private adminService: AdminService,
+        private dataAplicationService: DataAplicationService,
         private route: ActivatedRoute,
         private router: Router,
-        private store: Store<any>
+        private store: Store<any>,
+        private formBuilder: FormBuilder,
     ) {
         this.getStore();
     }
@@ -36,6 +42,16 @@ export class VideogamesPremiumComponent implements OnInit {
     ngOnInit() {
         this.detectedChangeRoute();
         this.initializeData();
+        this.createForm();
+    }
+
+    createForm() {
+        this.formMark = this.formBuilder.group({
+            mark: [
+                this.mark,
+                Validators.compose([Validators.required, Validators.maxLength(2), Validators.max(10), Validators.min(1)])
+            ],
+        });
     }
 
     detectedChangeRoute(): void {
@@ -108,4 +124,23 @@ export class VideogamesPremiumComponent implements OnInit {
         this.gameId = game.id;
     }
 
+    onSubmit(form) {
+        const data = {
+            mark: form.value.mark,
+            user_id: this.userId,
+            game_id: this.gameId
+        };
+
+        this.adminService.mark('mark_game', data)
+            .subscribe(response => {
+                if (response['status'] !== 'error') {
+                    this.dataAplicationService.createModal('success', 'Success', 'Thank for rate this game');
+                } else {
+                    this.dataAplicationService.createModal('Error', 'Ups', 'Sorry you can\'t rate this game');
+                }
+            });
+        form.reset();
+        document.getElementById('modal-marks').click();
+        this.initializeData();
+    }
 }

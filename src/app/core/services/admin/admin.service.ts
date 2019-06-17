@@ -169,12 +169,19 @@ export class AdminService {
         return this.http.get(this.url + type + '/' + category, { headers });
     }
 
-
     deleteMovie(data) {
         const json = JSON.stringify(data);
         const params = 'json=' + json;
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.http.post(this.url + 'delete/movie', params, { headers });
+    }
+
+    mark(route, mark) {
+        const json = JSON.stringify(mark);
+        const params = 'json=' + json;
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.post(this.url + route, params, { headers });
     }
 }

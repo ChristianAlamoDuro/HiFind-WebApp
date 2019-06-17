@@ -1,60 +1,94 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="ml-3 col-12 col-md-2">
-          <app-side-navbar></app-side-navbar>
+    <div class="row">
+        <div class="ml-3 col-12 col-md-2">
+            <app-side-navbar></app-side-navbar>
+        </div>
+        <div class="col-12 col-lg-9 main-color" *ngIf="data">
+            <section class="row ml-sm-auto mr-sm-auto d-flex justify-content-center">
+                <!--games -->
+                <article *ngFor="let game of data" class="col-md-6 col-lg-4 col-xl-4 mt-3 mb-2 card-games">
+                    <div class="card shadow-lg animated fadeInLeft">
+                        <img class="img-fluid" src="http://localhost/HiFind-Api/{{game.image}}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{game.name}}</h5>
+                            <hr>
+                            <h6 class="card-subtitle mb-2 text-muted"> <small>{{game.out_date}}</small></h6>
+                            <p class="card-text">{{game.sinopsis}}
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-end p-4">
+                            <!-- Boton Modal-->
+                            <a href="#modal-show-game" class="btn btn-primary" (click)="takeInformation(game)"
+                                data-toggle="modal">Show more
+                            </a>
+                            <a href="#modal-marks" class="btn btn-secondary ml-3" (click)="takeInformation(game)"
+                                data-toggle="modal"> Rate game
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
+        <div class="col-12 col-md-9 text-center main-color" *ngIf="!data">
+            <h2>Sorry this category don't have games</h2>
+            <img src="../../../../assets/img/not-found.gif" class="img-fluid" alt="not-found">
+        </div>
     </div>
-    <div class="col-12 col-lg-9 main-color" *ngIf="data">
-      <section class="row ml-sm-auto mr-sm-auto d-flex justify-content-center">
-        <!--games -->
-        <article *ngFor="let game of data" class="col-md-6 col-lg-4 col-xl-4 mt-5 card-games">
-          <div class="card shadow-lg animated fadeInLeft">
-            <img class="img-fluid" src="http://localhost/HiFind-Api/{{game.image}}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{game.name}}</h5>
-              <hr>
-              <h6 class="card-subtitle mb-2 text-muted"> <small>{{game.out_date}}</small></h6>
-              <p class="card-text">{{game.sinopsis}}
-              </p>
-            </div>
-            <div class="d-flex justify-content-center align-items-end p-4">
-              <!-- Boton Modal-->
-              <a href="#modal-show-game" class="btn btn-primary" (click)="takeInformation(game)" data-toggle="modal">Show more
-              </a>
-              <!-- Modal -->
-            </div>
-          </div>
-        </article>
-      </section>
-    </div>
-    <div class="col-12 col-md-9 text-center main-color" *ngIf="!data">
-        <h2>Sorry this category don't have games</h2>
-        <img src="../../../../assets/img/not-found.gif" class="img-fluid" alt="not-found" >
-      </div>
-  </div>
 </div>
 <div class="modal fade game-modal-lg" id="modal-show-game">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="model-title">{{ name }}</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-12 col-md-6 mb-3">
-            <img src="http://localhost/HiFind-Api/{{image}}" alt="{{name}}" class="img-fluid">
-          </div>
-          <div class="col-12 col-md-6">
-            <hr class="form-aparece-movil ">
-            <span class="font-weight-bold">Name:</span> {{ name }} <br>
-            <span class="font-weight-bold">Out date:</span> {{ outDate }} <br>
-            <span class="font-weight-bold">Public directed:</span> +{{ publicDirected }} <br>
-            <span class="font-weight-bold">Categories:</span> {{ categories }} <br>
-            <span class="font-weight-bold">Duration:</span> {{ duration }} <br>
-            <span class="font-weight-bold">Sinopsis:</span> {{ sinopsis }}
-          </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="model-title">{{ name }}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-3">
+                        <img src="http://localhost/HiFind-Api/{{image}}" alt="{{name}}" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <hr class="form-aparece-movil ">
+                        <span class="font-weight-bold">Name:</span> {{ name }} <br>
+                        <span class="font-weight-bold">Out date:</span> {{ outDate }} <br>
+                        <span class="font-weight-bold">Public directed:</span> +{{ publicDirected }} <br>
+                        <span class="font-weight-bold">Categories:</span> {{ categories }} <br>
+                        <span class="font-weight-bold">Duration:</span> {{ duration }} <br>
+                        <span class="font-weight-bold">Sinopsis:</span> {{ sinopsis }}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<div class="modal fade game-modal-lg" id="modal-marks">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="model-title">{{ name }}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-3">
+                        <img src="http://localhost/HiFind-Api/{{image}}" alt="{{name}}" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <hr class="show-movil">
+                        <h4 class="text-center">Please rate this game</h4>
+                        <form [formGroup]="formMark" (ngSubmit)="onSubmit(formMark)" enctype="multipart/form-data">
+                            <div class="form-group mt-3">
+                                <input type="number" name="" id="mark" class="col-12" placeholder="Rate this movie" formControlName="mark" name="mark">
+                            </div>
+                            <div class="d-flex justify-content-center align-items-end p-4">
+                                <input type="submit" value="Rate game" class="btn btn-primary ml-3"
+                                [disabled]="!formMark.valid">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
