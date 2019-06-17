@@ -14,14 +14,14 @@
             <h6 class="footer__title">Contact</h6>
             <hr class="footer__hr">
             <p class="mt-3" *ngFor="let social of dataAplication?.SocialNetwork">
-              <a class="footer__link" href="{{social.url}}"><i class="{{social.icon}}"></i> {{social.name}}</a> <br>
+              <a class="footer__link" ><i class="{{social.icon}}"></i> {{social.name}}</a> <br>
             </p>
           </div>
           <div class="col-12 col-md-4">
             <h6 class="footer__title">Other data</h6>
             <hr class="footer__hr">
             <p class="mt-3">
-              <i class="fafa-handshake"></i> <a href="" class="footer__link">
+              <i class="fafa-handshake"></i> <a class="footer__link">
                 License</a> <br>
               <i class="fa fa-map"></i><a class="footer__link" [routerLink]="[ '/web-map']"> web-map</a><br>
               <i class="fa fa-location-arrow"></i> Direction: Ctra. Colmenar Viejo, Km. 12,800

@@ -12,7 +12,7 @@ export class AdminService {
     constructor(
         private http: HttpClient
     ) {
-        this.url = 'http://localhost/tfc/HiFind-Api/server.php/api/';
+        this.url = 'http://localhost/HiFind-Api/public/api/';
     }
 
     addGame(game, image) {
@@ -36,11 +36,10 @@ export class AdminService {
         return this.http.get(this.url + `games/${gameId}`, { headers });
     }
 
-
-    getGameByName(gameName) {
+    getByName(type: string, gameName) {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.get(this.url + `games/${gameName}`, { headers });
+        return this.http.get(this.url + type + '/' + gameName, { headers });
     }
 
     getGamesForType(type: string, category: string) {

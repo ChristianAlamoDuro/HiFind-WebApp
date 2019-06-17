@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminService } from '@services/admin/admin.service';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
+import { Validators, FormBuilder } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
 
 @Component({
@@ -14,24 +16,48 @@ import { map } from 'rxjs/operators';
 
 
 export class SearchPremiumComponent implements OnInit {
-    //
+
     public gameTitle: string;
-    // Creamos la variable searchTitle con lo que vamos a buscar en la barra de busqueda
     public searchTitle: string;
-    // Creamos la variable movieResults sera un array de tipo any donde se guardará la respuesta de la api en formato json
     public gameResult: Array<any> = [];
-    // Crearemos una variable result de tipo boolean de manera que cuando el servidor responda con contenido es decir se hayan
-    // encontrado sugerencias a la busqueda se pondra a true
+    public movieResult: Array<any> = [];
+    public actorsResults: Array<any> = [];
+    public directorsResults: Array<any> = [];
     public result: boolean;
     public dataAplication;
+    public categories: string [];
+    public name: string;
+    public outDate: string;
+    public publicDirected: string;
+    public sinopsis: string;
+    public image: string;
+    public marks: any;
+    public gameId: string;
+    public duration: string;
+    public formMark: any;
+    public mark: any;
+    public title: string;
+    public filmProducer: string;
+    public movieId: string;
+    public directors: string;
+    public actors: string;
+    public userId: string;
+    public biography: string;
+    public birthday; string;
+    public movies: any;
+    public surname: string;
+    public actorDirectorId: string;
+    public load = false;
+    public notFound = false;
 
     constructor(
-        // Creamos la variable activatedRoute de tipo activatedRouter para poder obtener el parametro de la url
         private activatedRoute: ActivatedRoute,
-        // Creamos la variable publicapimovie de tipo publicmoviesapiserive para poder acceder a los metodos de la clase apimovieserice
         private adminService: AdminService,
         private router: Router,
-        private dataService: DataAplicationService
+        private dataService: DataAplicationService,
+        private formBuilder: FormBuilder,
+        private store: Store<any>,
+        private dataAplicationService: DataAplicationService
     ) {
         this.dataService.getData().subscribe(
             result => {
@@ -40,36 +66,189 @@ export class SearchPremiumComponent implements OnInit {
         );
         this.activatedRoute.params.subscribe(
             results => {
-                this.searchTitle = this.getUrl();
-                // llamamos al metodo searchMovie y le pasamos el resultado del parametro obtenido por la url
-                this.searchGames(this.searchTitle);
+                this.getUrl();
+                this.searchGames();
             }
         );
     }
     ngOnInit() {
+        this.getStore();
+        this.createForm();
     }
-    // Función para buscar la información por titulo en la api
-    // Guardamos en el array movieResults todas las ocurrencias formato json
+
     getUrl() {
-        return this.activatedRoute.snapshot.paramMap.get('name');
+        this.searchTitle = this.activatedRoute.snapshot.paramMap.get('name');
     }
 
-    searchGames(title: string) {
+    createForm() {
+        this.formMark = this.formBuilder.group({
+            mark: [
+                this.mark,
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(2),
+                    Validators.max(10),
+                    Validators.min(1),
+                    Validators.pattern('[1-9]{1}0?')
+                ])
+            ],
+        });
+    }
 
-        this.adminService.getGameByName(title)
+    searchGames() {
+        this.adminService.getByName('games', this.searchTitle)
             .pipe(
-                map(data => data['games'])
+                map(data => data['games']),
+                finalize(() => this.searchMovies())
             )
             .subscribe(
                 results => {
+                    console.log(results);
                     this.gameResult = results;
                 }
             );
     }
-    // Funcion a la que se le pasa por parametros el titulo de la pelicula que en este momento se a
-    // seleccionado y redirecciona a la ruta more-info pasandole por url ese titulo de pelicula
-    moreInfo(movieTitle) {
-        this.gameTitle = movieTitle;
-        this.router.navigate(['/more-info/' + this.gameTitle]);
+
+    searchMovies() {
+        this.adminService.getByName('movies', this.searchTitle)
+            .pipe(
+                map(data => data['movies']),
+                finalize(() => this.searchActor())
+            )
+            .subscribe(
+                results => {
+                    console.log(results);
+                    this.movieResult = results;
+                }
+            );
+    }
+
+    searchActor() {
+        this.adminService.getByName('actors', this.searchTitle)
+            .pipe(
+                map(data => data['actors']),
+                finalize(() => this.searchDirectors())
+            )
+            .subscribe(
+                results => {
+                    console.log(results);
+                    this.actorsResults = results;
+                }
+            );
+    }
+
+    searchDirectors() {
+        this.adminService.getByName('directors', this.searchTitle)
+            .pipe(
+                map(data => data['directors']),
+                finalize(() =>  this.load = true)
+            )
+            .subscribe(
+                results => {
+                    console.log(results);
+                    this.directorsResults = results;
+                    console.log(this.actorsResults);
+                    console.log(this.directorsResults);
+                    console.log(this.movieResult);
+                    console.log(this.gameResult);
+                    
+                    
+                }
+            );
+    }
+
+    takeInformationGame(game) {
+        console.log(game);
+        this.name = game.name;
+        this.categories = game.categories.join(', ');
+        this.outDate = game.out_date;
+        this.publicDirected = game.public_directed;
+        this.duration = game.duration;
+        this.sinopsis = game.sinopsis;
+        this.image = game.image;
+        this.marks = game.marks;
+        this.gameId = game.id;
+    }
+
+    takeInformationMovie(movie) {
+        this.title = movie.title;
+        this.categories = movie.categories.join(', ');
+        this.actors = movie.actors.join(', ');
+        this.directors = movie.directors.join(', ');
+        this.outDate = movie.out_date;
+        this.publicDirected = movie.public_directed;
+        this.duration = movie.duration;
+        this.sinopsis = movie.sinopsis;
+        this.image = movie.image;
+        this.marks = movie.marks;
+        this.movieId = movie.id;
+        this.filmProducer = movie.film_producer;
+    }
+
+    takeInfomationActorOrDirector(data) {
+        this.movies = [];
+        this.biography = data.biography;
+        this.birthday = data.birthday;
+        for (const movie of data.movies) {
+            this.movies.push(movie.title);
+        }
+        this.movies = this.movies.join(', ');
+        console.log(this.movies);
+        this.surname = data.surname;
+        this.image = data.image;
+        this.actorDirectorId = data.id;
+    }
+
+    getStore() {
+        const self = this;
+
+        self.store.pipe(
+          map(value => {
+            return value.state['userData'];
+          })
+        )
+        .subscribe(response => {
+           self.userId = response.sub;
+        });
+    }
+    
+    onSubmitGame(form) {
+        const data = {
+            mark: form.value.mark,
+            user_id: this.userId,
+            game_id: this.gameId
+        };
+
+        this.adminService.mark('mark_game', data)
+            .subscribe(response => {
+                if (response['status'] !== 'error') {
+                    this.dataAplicationService.createModal('success', 'Success', 'Thank for rate this game');
+                } else {
+                    this.dataAplicationService.createModal('Error', 'Ups', 'Sorry you can\'t rate this game');
+                }
+            });
+        form.reset();
+        this.searchGames();
+        document.getElementById('modal-marks-games').click();
+    }
+
+    onSubmitMovie(form) {
+        const data = {
+            mark: form.value.mark,
+            user_id: this.userId,
+            movie_id: this.movieId
+        };
+
+        this.adminService.mark('mark_movie', data)
+            .subscribe(response => {
+                if (response['status'] !== 'error') {
+                    this.dataAplicationService.createModal('success', 'Success', 'Thank for rate this movie');
+                } else {
+                    this.dataAplicationService.createModal('Error', 'Ups', 'Sorry you can\'t rate this movie');
+                }
+            });
+        form.reset();
+        this.searchGames();
+        document.getElementById('modal-marks-movies').click();
     }
 }
