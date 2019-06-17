@@ -75,7 +75,6 @@ export class HomePremiumComponent implements OnInit {
         this.adminService.getCategoryType('is_special_game')
             .pipe(
                 map(data => data['category']),
-                finalize(() => this.initializeData())
             )
             .subscribe(response => {
                 for (const category of response) {
@@ -86,6 +85,7 @@ export class HomePremiumComponent implements OnInit {
         this.adminService.getCategoryType('is_special_movie')
             .pipe(
                 map(data => data['category']),
+                finalize(() => this.initializeData())
             )
             .subscribe(response => {
                 for (const category of response) {

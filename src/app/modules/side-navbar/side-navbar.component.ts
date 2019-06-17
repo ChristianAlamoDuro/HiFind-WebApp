@@ -17,6 +17,7 @@ export class SideNavBarComponent implements OnInit {
     public categoriesGames: any[];
     public categoryMovies: any[];
     public url: string;
+    public categoryActive: string;
 
     constructor(
         private dataService: DataAplicationService,
@@ -30,6 +31,10 @@ export class SideNavBarComponent implements OnInit {
     }
     ngOnInit() {
         this.getDataAplication();
+    }
+
+    saveActive(category) {
+        this.categoryActive = category;
     }
 
     filterCategories() {

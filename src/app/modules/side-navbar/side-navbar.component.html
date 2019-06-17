@@ -15,7 +15,7 @@
                     {{dataAplication.Generic.categories}}
                 </h4>
                 <div *ngFor="let category of categoryMovies">
-                    <a routerLink="/{{ url }}/{{ category }}" class="nav-link">{{category}}</a>
+                      <a (click)="saveActive(category)" routerLink="/{{ url }}/{{ category }}" [ngClass]="{'active': category === categoryActive }" class="nav-link">{{category}}</a>
                 </div>
             </div>
             <div *ngIf="movies === false || games === true">
@@ -27,7 +27,7 @@
                     {{dataAplication.Generic.categories}}
                 </h4>
                 <div *ngFor="let category of categoriesGames">
-                    <a routerLink="/{{ url }}/{{ category }}" class="nav-link">{{category}}</a>
+                    <a (click)="saveActive(category)" routerLink="/{{ url }}/{{ category }}" [ngClass]="{'active': category === categoryActive }" class="nav-link">{{category}}</a>
                 </div>
             </div>
         </div>
