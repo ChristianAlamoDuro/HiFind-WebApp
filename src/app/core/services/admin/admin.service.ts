@@ -36,6 +36,13 @@ export class AdminService {
         return this.http.get(this.url + `games/${gameId}`, { headers });
     }
 
+
+    getGameByName(gameName) {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.get(this.url + `games/${gameName}`, { headers });
+    }
+
     getGamesForType(type: string, category: string) {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 

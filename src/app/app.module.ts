@@ -33,6 +33,7 @@ import { AddDirectorComponent } from './modules/admin/add-director/add-director.
 import { AddActorComponent } from './modules/admin/add-actor/add-actor.component';
 import { ShowAllComponent } from './modules/admin/show-all/show-all.component';
 import { HomePremiumComponent } from './modules/premium/home-premium/home-premium.component';
+import { SearchPremiumComponent } from './modules/premium/search-premium/search-premium.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { HomePremiumComponent } from './modules/premium/home-premium/home-premiu
     AddDirectorComponent,
     AddActorComponent,
     ShowAllComponent,
-    HomePremiumComponent
+    HomePremiumComponent,
+    SearchPremiumComponent
   ],
   imports: [
     BrowserModule,

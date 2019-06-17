@@ -21,6 +21,7 @@ import { AddDirectorComponent } from '@modules/admin/add-director/add-director.c
 import { AddActorComponent } from '@modules/admin/add-actor/add-actor.component';
 import { ShowAllComponent } from '@modules/admin/show-all/show-all.component';
 import { HomePremiumComponent } from './modules/premium/home-premium/home-premium.component';
+import { SearchPremiumComponent } from '@modules/premium/search-premium/search-premium.component';
 
 import { GuardGuard } from '@core/guards/guard.guard';
 
@@ -37,12 +38,13 @@ const appRoutes: Routes = [
   { path: 'adminAddDirector/:id', component: AddDirectorComponent, canActivate: [GuardGuard] },
   { path: 'adminAddActor', component: AddActorComponent, canActivate: [GuardGuard] },
   { path: 'adminAddActor/:id', component: AddActorComponent, canActivate: [GuardGuard] },
-  { path: 'adminShow/:type', component: ShowAllComponent, canActivate: [GuardGuard]},
+  { path: 'adminShow/:type', component: ShowAllComponent, canActivate: [GuardGuard] },
   { path: 'home', component: HomeComponent },
   { path: 'homePremium', component: HomePremiumComponent },
   { path: 'homePremium/:type', component: HomePremiumComponent },
   { path: 'gamesPremium', component: VideogamesPremiumComponent },
   { path: 'gamesPremium/:type', component: VideogamesPremiumComponent },
+  { path: 'searchPremium/:name', component: SearchPremiumComponent },
   { path: 'moviesPremium', component: MoviesPremiumComponent },
   { path: 'moviesPremium/:type', component: MoviesPremiumComponent },
   { path: 'searchResults/:title', component: SearchResultsComponent },
@@ -51,7 +53,7 @@ const appRoutes: Routes = [
   { path: 'web-map', component: WebMapComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent },
 ];
 export const AppRoutingProviders: any[] = [];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
