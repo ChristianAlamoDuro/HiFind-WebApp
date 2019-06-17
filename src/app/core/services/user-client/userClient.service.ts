@@ -10,7 +10,7 @@ export class UserClientService {
   constructor(
     public http: HttpClient
   ) {
-    this.url = 'http://localhost/HiFind-Api/public/';
+    this.url = 'http://localhost/tfc/HiFind-Api/server.php/';
   }
 
   register(user) {
