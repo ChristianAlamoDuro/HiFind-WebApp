@@ -4,14 +4,29 @@
   <!--Mapa Web -->
 
   <!--Row-->
-
-  <div class="row justify-content-center mb-5" *ngIf="dataAplication">
-    <div class="col-12 mt-2 col-lg-6 col-xl-4" *ngFor="let iterator of dataAplication.webmap">
-      <h3 class="tittle_header">{{iterator}}</h3>
-      <div class="jumbotron h-100" *ngFor="let item of iterator">
-        <hr class="my-4">{{item.title}}<br>
+  <div class="row justify-content-center mb-5" *ngIf="load">
+    <div class="col-12 mt-2 col-lg-6 col-xl-4">
+      <h3 class="tittle_header">Home</h3>
+      <div class="jumbotron h-100">
+        <hr class="my-4"><br>
         <i class="fa fa-home p-2" aria-hidden="true"></i>
-        <a class="lead tittle_map" href="index.html">Home</a><br><br>
+        <a class="lead tittle_map" routerLink="">Home</a><br><br>
+      </div>
+    </div>
+    <div class="col-12 mt-2 col-lg-6 col-xl-4">
+      <h3 class="tittle_header">Videogames</h3>
+      <div class="jumbotron h-100">
+        <hr class="my-4"><br>
+        <i class="fa fa-home p-2" aria-hidden="true"></i>
+        <a class="lead tittle_map" routerLink="/gamesPremiun">Games</a><br><br>
+      </div>
+    </div>
+    <div class="col-12 mt-2 col-lg-6 col-xl-4">
+      <h3 class="tittle_header">Movies</h3>
+      <div class="jumbotron h-100">
+        <hr class="my-4"><br>
+        <i class="fa fa-home p-2" aria-hidden="true"></i>
+        <a class="lead tittle_map" routerLink="/moviesPremium">Movies</a><br><br>
       </div>
     </div>
   </div>

@@ -42,6 +42,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'homePremium', component: HomePremiumComponent },
   { path: 'homePremium/:type', component: HomePremiumComponent },
+  { path: 'userData', component:UserPremiumComponent },
   { path: 'gamesPremium', component: VideogamesPremiumComponent },
   { path: 'gamesPremium/:type', component: VideogamesPremiumComponent },
   { path: 'searchPremium/:name', component: SearchPremiumComponent },

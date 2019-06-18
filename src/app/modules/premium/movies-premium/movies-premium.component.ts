@@ -24,7 +24,7 @@ export class MoviesPremiumComponent implements OnInit {
     public duration: string;
     public sinopsis: string;
     public image: string;
-    public marks: string [];
+    public marks: string[];
     public movieId: string;
     public filmProducer: string;
     public categoryType: any;
@@ -94,13 +94,13 @@ export class MoviesPremiumComponent implements OnInit {
         const self = this;
 
         self.store.pipe(
-          map(value => {
-            return value.state['userData'];
-          })
+            map(value => {
+                return value.state['userData'];
+            })
         )
-        .subscribe(response => {
-           self.userId = response.sub;
-        });
+            .subscribe(response => {
+                self.userId = response.sub;
+            });
     }
 
     takeInformation(movie) {
