@@ -49,7 +49,13 @@ export class VideogamesPremiumComponent implements OnInit {
         this.formMark = this.formBuilder.group({
             mark: [
                 this.mark,
-                Validators.compose([Validators.required, Validators.maxLength(2), Validators.max(10), Validators.min(1)])
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(2),
+                    Validators.max(10),
+                    Validators.min(1),
+                    Validators.pattern('[1-9]{1}0?')
+                ])
             ],
         });
     }

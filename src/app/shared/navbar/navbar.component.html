@@ -38,7 +38,7 @@
     <a class="navbar-brand" [routerLink]="[ '/home']"><img src="../../../assets/img/manoZombie.png" id="icono"></a>
     <div class="form-inline form-aparece-movil col-5">
       <input class="form-control  rounded-pill" type="search" placeholder="Seach" aria-label="Search"
-        (keyup.enter)=searchMovie() [(ngModel)]="movieName">
+        (keyup.enter)=searchPremium() [(ngModel)]="movieName">
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,8 +58,8 @@
       </ul>
       <div class="form-inline mr-auto form-desaparece-movil">
         <input class="form-control mr-2 rounded-pill" id="busqueda" type="search" placeholder="Buscar" aria-label="Search"
-          (keyup.enter)="searchMovie()" [(ngModel)]="movieName">
-        <button (click)="searchMovie()" class="bg-busqueda btn btn-outline-success my-2 my-sm-0 rounded-pill"
+          (keyup.enter)="searchPremium()" [(ngModel)]="movieName">
+        <button (click)="searchPremium()" class="bg-busqueda btn btn-outline-success my-2 my-sm-0 rounded-pill"
           type="button"><i class="fa fa-search"></i></button>
       </div>
       <ul class="navbar-nav ml-auto color-logeo">
@@ -77,7 +77,7 @@
     <a class="navbar-brand" [routerLink]="[ '/home']"><img src="../../../assets/img/manoZombie.png" id="icono"></a>
     <div class="form-inline form-aparece-movil col-5">
       <input class="form-control  rounded-pill" type="search" placeholder="Seach" aria-label="Search"
-        (keyup.enter)=searchMovie() [(ngModel)]="movieName">
+        (keyup.enter)=searchPremium() [(ngModel)]="movieName">
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,8 +106,8 @@
       </ul>
       <div class="form-inline mr-auto form-desaparece-movil">
         <input class="form-control mr-2 rounded-pill" id="busqueda" type="search" placeholder="Buscar" aria-label="Search"
-          (keyup.enter)="searchMovie()" [(ngModel)]="movieName">
-        <button (click)="searchMovie()" class="bg-busqueda btn btn-outline-success my-2 my-sm-0 rounded-pill"
+          (keyup.enter)="searchPremium()" [(ngModel)]="movieName">
+        <button (click)="searchPremium()" class="bg-busqueda btn btn-outline-success my-2 my-sm-0 rounded-pill"
           type="button"><i class="fa fa-search"></i></button>
       </div>
       <ul class="navbar-nav ml-auto color-logeo">

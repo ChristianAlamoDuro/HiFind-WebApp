@@ -26,11 +26,15 @@ export class HomePremiumComponent implements OnInit {
     public gameId: string;
     public duration: string;
     public formMark: any;
-    public mark: any;
     public dataGames: any;
     public dataMovies: any;
     public categoryGames: any;
     public categoryMovies: any;
+    public title: string;
+    public filmProducer: string;
+    public movieId: string;
+    public directors: string;
+    public actors: string;
 
     constructor(
         private adminService: AdminService,
@@ -56,8 +60,14 @@ export class HomePremiumComponent implements OnInit {
     createForm() {
         this.formMark = this.formBuilder.group({
             mark: [
-                this.mark,
-                Validators.compose([Validators.required, Validators.maxLength(2), Validators.max(10), Validators.min(1)])
+                this.marks,
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(2),
+                    Validators.max(10),
+                    Validators.min(1),
+                    Validators.pattern('[1-9]{1}0?')
+                ])
             ],
         });
     }
@@ -93,6 +103,7 @@ export class HomePremiumComponent implements OnInit {
                 }
             });
     }
+
     initializeData() {
         this.dataGames = [];
         this.dataMovies = [];
@@ -171,7 +182,8 @@ export class HomePremiumComponent implements OnInit {
             });
     }
 
-    takeInformation(game) {
+    takeInformationGame(game) {
+        console.log(game);
         this.name = game.name;
         this.categories = game.categories.join(', ');
         this.outDate = game.out_date;
@@ -183,7 +195,22 @@ export class HomePremiumComponent implements OnInit {
         this.gameId = game.id;
     }
 
-    onSubmit(form) {
+    takeInformationMovie(movie) {
+        this.title = movie.title;
+        this.categories = movie.categories.join(', ');
+        this.actors = movie.actors.join(', ');
+        this.directors = movie.directors.join(', ');
+        this.outDate = movie.out_date;
+        this.publicDirected = movie.public_directed;
+        this.duration = movie.duration;
+        this.sinopsis = movie.sinopsis;
+        this.image = movie.image;
+        this.marks = movie.marks;
+        this.movieId = movie.id;
+        this.filmProducer = movie.film_producer;
+    }
+
+    onSubmitGame(form) {
         const data = {
             mark: form.value.mark,
             user_id: this.userId,
@@ -199,7 +226,27 @@ export class HomePremiumComponent implements OnInit {
                 }
             });
         form.reset();
-        document.getElementById('modal-marks').click();
-        this.initializeData();
+        this.getCategoryType();
+        document.getElementById('modal-marks-games').click();
+    }
+
+    onSubmitMovie(form) {
+        const data = {
+            mark: form.value.mark,
+            user_id: this.userId,
+            movie_id: this.movieId
+        };
+
+        this.adminService.mark('mark_movie', data)
+            .subscribe(response => {
+                if (response['status'] !== 'error') {
+                    this.dataAplicationService.createModal('success', 'Success', 'Thank for rate this movie');
+                } else {
+                    this.dataAplicationService.createModal('Error', 'Ups', 'Sorry you can\'t rate this movie');
+                }
+            });
+        form.reset();
+        this.getCategoryType();
+        document.getElementById('modal-marks-movies').click();
     }
 }

@@ -39,6 +39,13 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/searchResults/' + this.movieName]);
       this.movieName = '';
     }
+  }
+
+  searchPremium() {
+    if (this.movieName.trim() !== '') {
+      this.router.navigate(['/searchPremium/' + this.movieName]);
+      this.movieName = '';
+    }
 
   }
 
