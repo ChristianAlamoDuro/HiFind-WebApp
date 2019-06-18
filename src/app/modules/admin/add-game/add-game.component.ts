@@ -3,7 +3,7 @@ import { DataAplicationService } from '@services/data-aplication/data-aplication
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '@core/services/admin/admin.service';
 import { map, finalize } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -34,6 +34,7 @@ export class AddGameComponent implements OnInit {
         private formBuilder: FormBuilder,
         private adminService: AdminService,
         private route: ActivatedRoute,
+        private router: Router,
         private store: Store<any>
     ) {
         this.getCategoryType();
@@ -110,11 +111,11 @@ export class AddGameComponent implements OnInit {
             ],
             sinopsis: [
                 this.gameSinopsis,
-                Validators.compose([Validators.required])
+                Validators.compose([Validators.required, Validators.maxLength(255)])
             ],
             outDate: [
                 this.gameOutDate,
-                Validators.compose([Validators.required, Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-2]{1}/[12]{1}[0-9]{3}$')])
+                Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[12]{1}[0-9]{3}$')
             ],
             image: [
                 this.gameImage, Validators.required
@@ -238,6 +239,7 @@ export class AddGameComponent implements OnInit {
                     if (response['status'] !== 'error') {
                         this.dataService.createModal('success', 'Successfull', 'Game have been saved');
                         this.formGame.reset();
+                        this.router.navigate(['/adminShow/games']);
                     } else {
                         this.dataService.createModal('error', 'Sorry', 'The formulary is incorrent, please try again');
                     }

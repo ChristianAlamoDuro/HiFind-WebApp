@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '@services/admin/admin.service';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-add-actor',
@@ -29,7 +29,8 @@ export class AddActorComponent implements OnInit {
         private formBuilder: FormBuilder,
         private adminService: AdminService,
         private dataService: DataAplicationService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) {
         this.title = 'Add actor';
         this.takeParamsUrl();
@@ -43,6 +44,7 @@ export class AddActorComponent implements OnInit {
         this.actorId = this.route.snapshot.paramMap.get('id');
 
         if (this.actorId) {
+            this.title = 'Modify Actor';
             this.adminService.getActor(this.actorId)
                 .pipe(
                     finalize(() => {
@@ -94,11 +96,11 @@ export class AddActorComponent implements OnInit {
             ],
             actorBirthday: [
                 this.birthday,
-                Validators.compose([Validators.required, Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-2]{1}/[12]{1}[0-9]{3}$')])
+                Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[12]{1}[0-9]{3}$')
             ],
             biography: [
                 this.biography,
-                Validators.compose([Validators.required])
+                Validators.compose([Validators.required, Validators.maxLength(255)])
             ],
             image: [
                 this.actorImage,
@@ -134,6 +136,7 @@ export class AddActorComponent implements OnInit {
                 console.log(response);
 
                 this.dataService.createModal('success', 'Successfull', 'Actor have been saved');
+                this.router.navigate(['/adminShow/actors']);
                 this.formGroup.reset();
             });
     }

@@ -4,7 +4,7 @@ import { AdminService } from '@services/admin/admin.service';
 import { Store } from '@ngrx/store';
 import { map, finalize } from 'rxjs/operators';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-add-movie',
@@ -42,6 +42,7 @@ export class AddMovieComponent implements OnInit {
         private store: Store<any>,
         private dataService: DataAplicationService,
         private route: ActivatedRoute,
+        private router: Router
     ) {
         this.getStore();
         this.categoriesSelected = [];
@@ -57,6 +58,7 @@ export class AddMovieComponent implements OnInit {
         this.movieId = this.route.snapshot.paramMap.get('id');
 
         if (this.movieId) {
+            this.title = 'Modify Movie';
             this.adminService.getMovie(this.movieId)
                 .pipe(
                     map(response => response['movies'])
@@ -147,11 +149,11 @@ export class AddMovieComponent implements OnInit {
             ],
             sinopsis: [
                 this.movieSinopsis,
-                Validators.compose([Validators.required])
+                Validators.compose([Validators.required, Validators.maxLength(255)])
             ],
             outDate: [
                 this.movieOutDate,
-                Validators.compose([Validators.required, Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-2]{1}/[12]{1}[0-9]{3}$')])
+                Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[12]{1}[0-9]{3}$')
             ],
             image: [
                 this.movieImage, Validators.required
@@ -385,6 +387,7 @@ export class AddMovieComponent implements OnInit {
                     console.log(response);
                 });
             this.dataService.createModal('success', 'Successfull', 'Movie have been saved');
+            this.router.navigate(['/adminShow/movies']);
         } else {
             this.dataService.createModal('error', 'Sorry', 'The formulary is incorrent, please try again');
         }

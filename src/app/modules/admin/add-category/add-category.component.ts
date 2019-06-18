@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '@core/services/admin/admin.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, finalize } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
@@ -27,7 +27,8 @@ export class AddCategoryComponent implements OnInit {
         private formBuilder: FormBuilder,
         private adminService: AdminService,
         private route: ActivatedRoute,
-        private store: Store<any>
+        private store: Store<any>,
+        private router: Router
     ) {
         this.getDataAplication();
         this.title = 'Add category';
@@ -56,6 +57,7 @@ export class AddCategoryComponent implements OnInit {
         this.categoryId = this.route.snapshot.paramMap.get('id');
 
         if (this.categoryId) {
+            this.title = 'Modify category';
             this.adminService.getCategory(this.categoryId)
                 .pipe(
                     map(response => response['category']),
@@ -114,7 +116,8 @@ export class AddCategoryComponent implements OnInit {
 
         this.adminService.addCategory(data).subscribe(
             response => {
-                console.log(response);
+                this.dataService.createModal('success', 'Successfull', 'Category have been saved');
+                this.router.navigate(['/adminShow/categories']);
             }
         );
 

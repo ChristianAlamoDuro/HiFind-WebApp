@@ -4,7 +4,7 @@ import { map, finalize } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AdminService } from '@services/admin/admin.service';
 import { DataAplicationService } from '@services/data-aplication/data-aplication.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-add-director',
@@ -29,7 +29,8 @@ export class AddDirectorComponent implements OnInit {
         private formBuilder: FormBuilder,
         private adminService: AdminService,
         private dataService: DataAplicationService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) {
         this.title = 'Add director';
     }
@@ -43,6 +44,7 @@ export class AddDirectorComponent implements OnInit {
         this.directorId = this.route.snapshot.paramMap.get('id');
 
         if (this.directorId) {
+            this.title = 'Modify Director';
             this.adminService.getDirector(this.directorId)
                 .pipe(
                     finalize(() => this.createForm())
@@ -96,11 +98,14 @@ export class AddDirectorComponent implements OnInit {
             ],
             directorBirthday: [
                 this.birthday,
-                Validators.compose([Validators.required, Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-2]{1}/[12]{1}[0-9]{3}$')])
+                Validators.compose([
+                    Validators.required,
+                    Validators.pattern('^[0-3]{1}[0-9]{1}/[0-1]{1}[0-9]{1}/[12]{1}[0-9]{3}$')
+                ])
             ],
             biography: [
                 this.biography,
-                Validators.compose([Validators.required])
+                Validators.compose([Validators.required, Validators.maxLength(255)])
             ],
             image: [
                 this.directorImage,
@@ -131,6 +136,7 @@ export class AddDirectorComponent implements OnInit {
         this.adminService.addDirector(data, this.directorImage[0]).
             subscribe(response => {
                 this.dataService.createModal('success', 'Successfull', 'Director have been saved');
+                this.router.navigate(['/adminShow/directors']);
                 this.formGroup.reset();
             });
     }
